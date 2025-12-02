@@ -58,54 +58,39 @@ $setting = \App\Helpers\Helpers::setting();
 		max-height: 100%;
 		height: 75px;
 	}
+.pulse-button {
+    position: relative;
+    z-index: 1;
+}
 
-	.card-gradient {
-		background: linear-gradient(135deg, #FF5722, #FFEB3B);
-		background-size: 200% 200%;
-		transition:
-			background-position 0.6s ease-out,
-			transform 0.3s ease,
-			box-shadow 0.3s ease;
-	}
+.pulse-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(76, 175, 80, 0.5); /* hijau lembut */
+    border-radius: 6px; /* sesuaikan dengan button */
+    z-index: -1;
+    animation: pulse 1.6s infinite;
+}
 
-	/* Efek saat hover */
-	.card-gradient:hover {
-		background-position: right center;
-		transform: translateY(-10px);
-		/* Naik 10px */
-		box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
-		/* Bayangan lebih tebal */
-	}
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    70% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
 
-	.btn-success:hover {
-		background-color: #28a745 !important;
-		/* Warna baru */
-		color: #fff !important;
-		/* Warna teks */
-		transform: translateY(-3px);
-		/* Jika ingin naik ke atas saat hover */
-		transition: 0.3s;
-	}
-
-	.card-gradient {
-		background: linear-gradient(120deg, #ff512f, #f09819, #f7e605ff, #f09819, #ff512f);
-		background-size: 600% 600%;
-		animation: gradientMove 5s ease-in-out infinite;
-	}
-
-	@keyframes gradientMove {
-		0% {
-			background-position: 0% 50%;
-		}
-
-		50% {
-			background-position: 100% 50%;
-		}
-
-		100% {
-			background-position: 0% 50%;
-		}
-	}
 </style>
 
 <body class="stretched">
@@ -151,13 +136,28 @@ $setting = \App\Helpers\Helpers::setting();
 						<div class="row justify-content-center">
 
 							<div class="col-lg-12 mb-12 mb-lg-0">
-								<div class="grid-inner shadow-sm h-shadow bg-white p-2 overflow-hidden rounded-5 text-center">
-									<div style="position:relative; width:100%; height:450px;">
-    <iframe 
-        src="https://bombanakab.go.id/storage/upload/ipkd/1762514678.pdf"
-        style="width:100%; height:100%; border:0; position:relative; z-index:10; background:transparent;"
-    ></iframe>
-</div>
+								<div class="grid-inner shadow-sm h-shadow bg-white overflow-hidden rounded-5" style="padding:20px 60px 20px 60px;">
+									<div style="position:relative; width:100%; height:auto;">
+
+										<div class="fancy-title title-center title-border topmargin-sm  text-center">
+											<h3>PENDAFTARAN SPMB <br>{{ $work_unit->name }}</h3>
+										</div>
+
+										<div class="service-feature w-100 mb-4 mt-5 mt-lg-0">
+
+											<div class="row gx-3">
+												<div class="col-lg-12 mb-12 mb-lg-0" data-animate="backInUp" data-delay="100">
+													{!! $work_unit->spmb_requirement !!}
+
+													<center>
+														<p style="margin-bottom: 10px;font-weight:bold;color:black">Silakan klik tombol di bawah ini untuk mendaftar: </p>
+														<a href="{{ $work_unit->spmb_url }}" target="_blank" class="btn btn-success pulse-button" style="background-color: #4caf50;border-color: #4caf50;">Pendaftaran</a>
+													</center>
+												</div>
+											</div>
+
+										</div>
+									</div>
 								</div>
 							</div>
 
@@ -177,7 +177,7 @@ $setting = \App\Helpers\Helpers::setting();
 										<img src="{{ asset('storage/menu/icons8-youtube2-100.png') }}" alt="YouTube" width="40" height="40">
 									</a>
 								</div>
-								<p class="mb-0 footer-copy">&copy; {{ date('Y') }}/{{ date('Y')+1 }} SPMB AL QALAM KENDARI</p>
+								<p class="mb-0 footer-copy">&copy; {{ date('Y')+1 }}/{{ date('Y')+2 }} SPMB AL QALAM KENDARI</p>
 							</div>
 						</footer>
 					</div>

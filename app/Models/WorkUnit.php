@@ -12,6 +12,7 @@ class WorkUnit extends Model
         'name',
         'spmb_status',
         'spmb_url',
+        'spmb_requirement',
         'image'
     ];
 

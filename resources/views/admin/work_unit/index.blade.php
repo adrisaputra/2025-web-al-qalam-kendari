@@ -86,6 +86,7 @@
             var name = $('#name').val();
             var spmb_status = $('#spmb_status').val();
             var spmb_url = $('#spmb_url').val();
+            var spmb_requirement = $('#spmb_requirement').val();
 
             // Buat objek FormData untuk mengirim data form, termasuk file
             var formData = new FormData();
@@ -93,6 +94,7 @@
             formData.append('name', name); 
             formData.append('spmb_status', spmb_status); 
             formData.append('spmb_url', spmb_url);
+            formData.append('spmb_requirement', spmb_requirement);
             formData.append('_token', "{{ csrf_token() }}");
 
             var image = document.getElementById('image');
@@ -141,6 +143,7 @@
         document.getElementById("head_title").textContent = "Tambah {{ __($title)}}";
         $('#myForm')[0].reset();
         document.getElementById("display_spmb_url").style.display = "none";
+        document.getElementById("display_spmb_requirement").style.display = "none";
         document.getElementById("show_image").textContent = "";
         document.getElementById("action").textContent = "Simpan";
     }
@@ -191,11 +194,14 @@
                 document.getElementById("name").value = response.data.name;
                 document.getElementById("spmb_status").value = response.data.spmb_status;
                 document.getElementById("spmb_url").value = response.data.spmb_url;
+                CKEDITOR.instances['spmb_requirement'].setData(response.data.spmb_requirement);
 
                 if(response.data.spmb_status === "Y"){
                     document.getElementById("display_spmb_url").style.display = "block";
+                    document.getElementById("display_spmb_requirement").style.display = "block";
                 } else {
                     document.getElementById("display_spmb_url").style.display = "none";
+                    document.getElementById("display_spmb_requirement").style.display = "none";
                 }
                 
                 if(response.data.image){

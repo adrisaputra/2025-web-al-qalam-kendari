@@ -1,3 +1,4 @@
+<script src="{{ url('backend/assets/ckeditor/ckeditor.js')}}"></script>
 <div class="modal fade" id="kt_modal_add_work_unit" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered mw-900px">
         <div class="modal-content">
@@ -43,7 +44,12 @@
                                 </div>
 
                             </div>
-                            <div id="section_id-error" class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+
+                        <div class="fv-row mb-7" id="display_spmb_requirement" style="display:none">
+                            <label class="fw-bold fs-6 mb-2">{{ __('Persyaratan Pendaftaran SPMB') }}</label>
+                            <textarea name="spmb_requirement" id="spmb_requirement" class="form-control ckeditor"></textarea>
+                            <div id="spmb_requirement-error" class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
 
                         <div class="fv-row mb-7">
@@ -66,13 +72,44 @@
 </div>
 <script>
     function displaySpmbUrl() {
-        var spmbStatus = document.getElementById("spmb_status").value;
-        var spmbUrlDiv = document.getElementById("display_spmb_url");
-        if (spmbStatus === "Y") {
-            spmbUrlDiv.style.display = "block";
+        var status = document.getElementById("spmb_status").value;
+        var display_spmb_url = document.getElementById("display_spmb_url");
+        var display_spmb_requirement = document.getElementById("display_spmb_requirement");
+        if (status === "Y") {
+            display_spmb_url.style.display = "block";
+            display_spmb_requirement.style.display = "block";
         } else {
-            spmbUrlDiv.style.display = "none";
+            display_spmb_url.style.display = "none";
+            display_spmb_requirement.style.display = "none";
             document.getElementById("spmb_url").value = ""; // Clear the URL field when hiding
+            document.getElementById("spmb_requirement").value = ""; // Clear the URL field when hiding
         }
     }
+
+    
+    CKEDITOR.replace('text', {
+        filebrowserUploadUrl: "{{route('upload_news', ['_token' => csrf_token() ])}}",
+        filebrowserUploadMethod: 'form'
+    });
+
+    // FIX: CKEditor di dalam Bootstrap 5 Modal tidak bisa diketik
+    document.addEventListener('focusin', (e) => {
+        // kalau target ada di dalam ckeditor dialog/iframe → biarkan
+        if (e.target.closest('.cke_dialog') || e.target.tagName === 'IFRAME') {
+            e.stopImmediatePropagation();
+        }
+    }, true);
+
+    if (bootstrap && bootstrap.Modal) {
+        bootstrap.Modal.prototype._enforceFocus = function() {
+            document.removeEventListener('focusin.bs.modal', this._focusinHandler);
+        };
+    }
+
+    // Inisialisasi CKEditor setiap kali modal dibuka
+    $('#kt_modal_add_news').on('shown.bs.modal', function() {
+        if (CKEDITOR.instances['text']) {
+            CKEDITOR.instances['text'].destroy(true);
+        }
+    });
 </script>

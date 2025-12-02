@@ -63,6 +63,7 @@ class WorkUnitController extends Controller
             $attributes = [
                 'name' => 'Nama Unit Kerja',
                 'spmb_url' => 'URL Pendaftaran SPMB',
+                'spmb_requirement' => 'persyaratan Pendaftaran SPMB',
                 'image' => 'Gambar',
             ];
 
@@ -70,12 +71,14 @@ class WorkUnitController extends Controller
                 $rules = [
                     'name' => 'required|string|max:255',
                     'spmb_url' => 'nullable|string|max:255',
+                    'spmb_requirement' => 'nullable|string',
                     'image' => 'image|mimes:jpg,png,jpeg|max:2000'
                 ];
             } else {
                 $rules = [
                     'name' => 'required|string|max:255',
                     'spmb_url' => 'nullable|string|max:255',
+                    'spmb_requirement' => 'nullable|string',
                     'image' => 'image|mimes:jpg,png,jpeg|max:2000'
                 ];
             }
@@ -129,8 +132,10 @@ class WorkUnitController extends Controller
 
             if($request->spmb_status == 'Y'){
                 $work_unit->spmb_url = $request->spmb_url;
+                $work_unit->spmb_requirement = $request->spmb_requirement;
             } else {
                 $work_unit->spmb_url = null;
+                $work_unit->spmb_requirement = null;
             }
             
             if ($work_unit->image && $request->file('image') != "") {

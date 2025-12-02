@@ -207,7 +207,7 @@ $setting = \App\Helpers\Helpers::setting();
 											<p style="color:white;font-size:20px;font-weight:bold">{{ $v->name }}</p>
 											<img src="{{ asset('storage/upload/work_unit/'.$v->image) }}" alt="Logo {{ $i }}" style="width:80%;">
 										</div>
-										<a href="{{ $v->spmb_url }}" class="btn btn-success" style="margin-top:30px">DAFTAR</a>
+										<a href="{{ url('page-spmb-detail/'.Crypt::encrypt($v->id)) }}" class="btn btn-success" style="margin-top:30px;background-color: #4caf50;border-color: #4caf50;">DAFTAR</a>
 									</div>
 								</div>
 								@endforeach
@@ -230,7 +230,7 @@ $setting = \App\Helpers\Helpers::setting();
 										<img src="{{ asset('storage/menu/icons8-youtube2-100.png') }}" alt="YouTube" width="40" height="40">
 									</a>
 								</div>
-								<p class="mb-0 footer-copy">&copy; {{ date('Y') }}/{{ date('Y')+1 }} SPMB AL QALAM KENDARI</p>
+								<p class="mb-0 footer-copy">&copy; {{ date('Y')+1 }}/{{ date('Y')+2 }} SPMB AL QALAM KENDARI</p>
 							</div>
 						</footer>
 					</div>

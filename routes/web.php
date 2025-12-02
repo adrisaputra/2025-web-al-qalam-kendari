@@ -49,7 +49,7 @@ Route::get('/refresh-captcha', function () {
 
 Route::get('/', [WebController::class, 'index']);
 Route::get('/page-spmb', [WebController::class, 'spmb']);
-Route::get('/page-spmb-detail', [WebController::class, 'spmb_detail']);
+Route::get('/page-spmb-detail/{work_unit}', [WebController::class, 'spmb_detail']);
 
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'authenticate']);
