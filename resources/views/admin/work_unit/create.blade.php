@@ -58,7 +58,6 @@
                             <span class="text-red" id="show_image"></span>
                             <div id="image-error" class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
-                        
 
                     </div>
                     <div class="text-center pt-15">

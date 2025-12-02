@@ -2,25 +2,17 @@
 
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\AlbumController;
-use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\FacilityController;
-use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LegalProductController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PhotoController;
-use App\Http\Controllers\PotentialCategoryController;
-use App\Http\Controllers\PotentialController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RealizationController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
-use App\Http\Controllers\VillageInstitutionController;
-use App\Http\Controllers\VillageOfficialController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\WorkUnitController;
 use Illuminate\Support\Facades\Artisan;
@@ -71,13 +63,21 @@ Route::middleware(['role:Administrator,Operator'])->group(function () {
     
     ## Profiles
     Route::get('/history', [ProfileController::class, 'index']);
-    Route::get('/vision_mission', [ProfileController::class, 'index']);
+    Route::get('/vision', [ProfileController::class, 'index']);
+    Route::get('/mission', [ProfileController::class, 'index']);
     Route::get('/structure', [ProfileController::class, 'index']);
-    Route::get('/area', [ProfileController::class, 'index']);
-    Route::get('/demographics', [ProfileController::class, 'index']);
     Route::post('/profile/validate', [ProfileController::class, 'validation']);
     Route::put('/profile/edit/{profile}', [ProfileController::class, 'update']);
     
+    ## Facility
+    Route::get('/facility', [FacilityController::class, 'index'])->name('facility.index');
+    Route::get('/facility/list', [FacilityController::class, 'get_facility_index'])->name('facility.list');
+    Route::post('/facility/store', [FacilityController::class, 'store']);
+    Route::post('/facility/validate/{action}', [FacilityController::class, 'validate']);
+    Route::get('/facility/edit/{facility}', [FacilityController::class, 'edit']);
+    Route::put('/facility/edit/{facility}', [FacilityController::class, 'update']);
+    Route::get('/facility/delete/{facility}',[FacilityController::class, 'delete']);
+
     ## News
     Route::get('/news', [NewsController::class, 'index'])->name('news.index');
     Route::get('/news/list', [NewsController::class, 'get_news_index'])->name('news.list');

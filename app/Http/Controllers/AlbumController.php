@@ -70,12 +70,12 @@ class AlbumController extends Controller
             if($action==="Simpan"){
                 $rules = [
                     'title' => 'required',
-                    'cover' => 'required|image|mimes:jpg,png,jpeg|max:1000'
+                    'cover' => 'required|image|mimes:jpg,png,jpeg|max:3000'
                 ];
             } else {
                 $rules = [
                     'title' => 'required',
-                    'cover' => 'image|mimes:jpg,png,jpeg|max:1000'
+                    'cover' => 'image|mimes:jpg,png,jpeg|max:3000'
                 ];
             }
 
@@ -93,42 +93,31 @@ class AlbumController extends Controller
             $album->fill($request->all());
 
             if ($request->hasFile('cover')) {
-                // Get the original file extension
-                $fileExtension = $request->cover->getClientOriginalExtension();
-                $fileName = time() . '.' . $fileExtension;
-            
-                // Move the uploaded file to a temporary directory
-                $tempPath = $request->file('cover')->storeAs('upload/album/temp', $fileName);
-            
-                // Define the desired dimensions
+                $file = $request->file('cover');
+                $extension = $file->getClientOriginalExtension();
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
+
+                // Tentukan ukuran
                 $width = 1600;
                 $height = 1068;
-            
-                $manager = new ImageManager(new Driver());
 
-                // Load the image from the temporary path
-                $imagePath = storage_path('app/public/' . $tempPath);
-                $image = $manager->read($imagePath);
-            
-                // Resize the image
-                $image->resize($width, $height, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                });
-            
-                // Define the final storage path
-                $finalPath = 'upload/album/' . $fileName;
-            
-                // Save the resized image to the final directory
-                $image->save(storage_path('app/public/' . $finalPath), 75);
-            
-                // Store the file name in the database
+                // Baca file langsung dari upload (tanpa pindah ke temp folder)
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($file->getRealPath())
+                    ->resize($width, $height, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    });
+
+                // Simpan tanpa kompresi
+                $encoded = $image->encodeByExtension($extension); // TANPA quality
+
+                // Simpan ke storage
+                Storage::put('upload/album/' . $fileName, (string) $encoded);
+
+                // Simpan nama file ke database
                 $album->cover = $fileName;
-            
-                // Remove the original temporary file
-                unlink($imagePath);
             }
-            
 
             $album->save();
             
@@ -157,42 +146,33 @@ class AlbumController extends Controller
                 Storage::delete('upload/album/'.$album->cover);
             }
    
-            if($request->cover){
-                // Get the original file extension
-                $fileExtension = $request->cover->getClientOriginalExtension();
-                $fileName = time() . '.' . $fileExtension;
-            
-                // Move the uploaded file to a temporary directory
-                $tempPath = $request->file('cover')->storeAs('upload/album/temp', $fileName);
-            
-                // Define the desired dimensions
+            if ($request->hasFile('cover')) {
+                $file = $request->file('cover');
+                $extension = $file->getClientOriginalExtension();
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
+
+                // Tentukan ukuran
                 $width = 1600;
                 $height = 1068;
-            
+
+                // Baca file langsung dari upload (tanpa pindah ke temp folder)
                 $manager = new ImageManager(new Driver());
-                
-                // Load the image from the temporary path
-                $imagePath = storage_path('app/public/' . $tempPath);
-                $image = $manager->read($imagePath);
-            
-                // Resize the image
-                $image->resize($width, $height, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                });
-            
-                // Define the final storage path
-                $finalPath = 'upload/album/' . $fileName;
-            
-                // Save the resized image to the final directory
-                $image->save(storage_path('app/public/' . $finalPath), 75);
-            
-                // Store the file name in the database
+                $image = $manager->read($file->getRealPath())
+                    ->resize($width, $height, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    });
+
+                // Simpan tanpa kompresi
+                $encoded = $image->encodeByExtension($extension); // TANPA quality
+
+                // Simpan ke storage
+                Storage::put('upload/album/' . $fileName, (string) $encoded);
+
+                // Simpan nama file ke database
                 $album->cover = $fileName;
-            
-                // Remove the original temporary file
-                unlink($imagePath);
             }
+
 		
             $album->save();
     

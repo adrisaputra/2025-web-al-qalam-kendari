@@ -172,7 +172,7 @@ $setting = \App\Helpers\Helpers::setting();
 									</a>
 								</div>
 								
-								{{--<div data-kt-menu-trigger="click" class="menu-item @if(in_array(Request::segment(1), array('history','vision_mission','structure','area','demographics','facility'))) here show @endif menu-accordion">
+								<div data-kt-menu-trigger="click" class="menu-item @if(in_array(Request::segment(1), array('history','vision','mission','structure','facility'))) here show @endif menu-accordion">
 									<span class="menu-link">
 										<span class="menu-icon" style="margin-right: 15px">
 											<img src="{{ asset('storage/menu/icons8-home-100.png') }}" width="30" height="30" >
@@ -190,11 +190,19 @@ $setting = \App\Helpers\Helpers::setting();
 											</a>
 										</div>
 										<div class="menu-item">
-											<a class="menu-link @if(Request::segment(1)=='vision_mission') active @endif" href="{{ url('vision_mission') }}">
+											<a class="menu-link @if(Request::segment(1)=='vision') active @endif" href="{{ url('vision') }}">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">Visi Misi</span>
+												<span class="menu-title">Visi</span>
+											</a>
+										</div>
+										<div class="menu-item">
+											<a class="menu-link @if(Request::segment(1)=='mission') active @endif" href="{{ url('mission') }}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">Misi</span>
 											</a>
 										</div>
 										<div class="menu-item">
@@ -203,22 +211,6 @@ $setting = \App\Helpers\Helpers::setting();
 													<span class="bullet bullet-dot"></span>
 												</span>
 												<span class="menu-title">Struktur Organisasi</span>
-											</a>
-										</div>
-										<div class="menu-item">
-											<a class="menu-link @if(Request::segment(1)=='area') active @endif" href="{{ url('area') }}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-												<span class="menu-title">Wilayah</span>
-											</a>
-										</div>
-										<div class="menu-item">
-											<a class="menu-link @if(Request::segment(1)=='demographics') active @endif" href="{{ url('demographics') }}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-												<span class="menu-title">Demografis Penduduk</span>
 											</a>
 										</div>
 										<div class="menu-item">
@@ -286,7 +278,7 @@ $setting = \App\Helpers\Helpers::setting();
 											</a>
 										</div>
 									</div>
-								</div>--}}
+								</div>
 								
 								<div class="menu-item">
 									<a class="menu-link @if(Request::segment(1)=="work_unit") active @endif" href="{{ url('/work_unit') }}">

@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Slider extends Model
+class Facility extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'work_unit_id',
-        'title',
+        'name',
         'image',
-        'url'
     ];
 }

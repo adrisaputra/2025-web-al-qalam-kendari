@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 use Yajra\DataTables\Facades\DataTables;
 
 class SliderController extends Controller
@@ -55,15 +57,18 @@ class SliderController extends Controller
         if ($request->ajax()) {
 
             $attributes = [
+                'title'  => 'Judul Slider',
                 'image'  => 'Gambar'
             ];
 
             if($action==="Simpan"){
                 $rules = [
+                    'title' => 'required|string|max:255',
                     'image' => 'required|image|mimes:jpg,png,jpeg|max:2000'
                 ];
             } else {
                 $rules = [
+                    'title' => 'required|string|max:255',
                     'image' => 'image|mimes:jpg,png,jpeg|max:2000'
                 ];
             }
@@ -81,9 +86,32 @@ class SliderController extends Controller
             $slider = New Slider();
             $slider->fill($request->all());
 
-            if($request->image){
-                $slider->image = time().'.'.$request->image->getClientOriginalExtension();
-                Storage::putFileAs('upload/slider',$request->file('image'), $slider->image);
+             ## Ubah width dan Height
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension();
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
+
+                // Tentukan ukuran
+                $width = 2048;
+                $height = 1152;
+
+                // Baca file langsung dari upload (tanpa pindah ke temp folder)
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($file->getRealPath())
+                    ->resize($width, $height, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    });
+
+                // Simpan tanpa kompresi
+                $encoded = $image->encodeByExtension($extension); // TANPA quality
+
+                // Simpan ke storage
+                Storage::put('upload/slider/' . $fileName, (string) $encoded);
+
+                // Simpan nama file ke database
+                $slider->image = $fileName;
             }
 
             $slider->save();
@@ -106,15 +134,41 @@ class SliderController extends Controller
     public function update(Request $request, Slider $slider)
     {
         if ($request->ajax()) {
+            
+            $slider->url = $request->url;
+
             if ($slider->image && $request->file('image') != "") {
                 Storage::delete('upload/slider/'.$slider->image);
             }
     
-            if($request->file('image')){	
-                $slider->image = time().'.'.$request->image->getClientOriginalExtension();
-                Storage::putFileAs('upload/slider',$request->file('image'), $slider->image);
+             ## Ubah width dan Height
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension();
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
+
+                // Tentukan ukuran
+                $width = 2048;
+                $height = 1152;
+
+                // Baca file langsung dari upload (tanpa pindah ke temp folder)
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($file->getRealPath())
+                    ->resize($width, $height, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    });
+
+                // Simpan tanpa kompresi
+                $encoded = $image->encodeByExtension($extension); // TANPA quality
+
+                // Simpan ke storage
+                Storage::put('upload/slider/' . $fileName, (string) $encoded);
+
+                // Simpan nama file ke database
+                $slider->image = $fileName;
             }
-		
+
             $slider->save();
     
             activity()->log('Edit Data Slider With ID = '.$slider->id);

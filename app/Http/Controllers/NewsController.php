@@ -69,13 +69,13 @@ class NewsController extends Controller
                 $rules = [
                     'title' => 'required',
                     'text' => 'required',
-                    'cover' => 'required|image|mimes:jpeg,png,jpg|max:1000'
+                    'cover' => 'required|image|mimes:jpeg,png,jpg|max:5000'
                 ];
             } else {
                 $rules = [
                     'title' => 'required',
                     'text' => 'required',
-                    'cover' => 'image|mimes:jpeg,png,jpg|max:1000'
+                    'cover' => 'image|mimes:jpeg,png,jpg|max:5000'
                 ];
             }
             
@@ -194,4 +194,29 @@ class NewsController extends Controller
         }
     }
 
+    public function upload_image(Request $request)
+    {
+        if ($request->hasFile('upload')) {
+
+            $originName = $request->file('upload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
+
+            // Simpan ke storage/app/public/news_image
+            $request->file('upload')->storeAs('news_image', $fileName);
+
+            // URL yang dapat diakses publik
+            $url = asset('storage/news_image/' . $fileName);
+
+            // CKEditor callback
+            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
+            $msg = 'Image uploaded successfully';
+
+            $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
+
+            @header('Content-type: text/html; charset=utf-8');
+            echo $response;
+        }
+    }
 }

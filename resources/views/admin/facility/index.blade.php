@@ -28,23 +28,24 @@
                     <div class="card-title">
                     </div>
                     <div class="card-toolbar">
-                        <div class="d-flex justify-content-end" data-kt-slider-table-toolbar="base">
+                        <div class="d-flex justify-content-end" data-kt-facility-table-toolbar="base">
                             <a href="{{ url('/'.Request::segment(1)) }}" class="btn btn-warning btn-icon btn-sm me-2 mb-2" title="Refresh Halaman"><i class="fa fa-undo"></i></a>
-                            <a class="btn btn-success btn-sm me-2 mb-2" data-bs-toggle="modal" data-bs-target="#kt_modal_add_slider" onClick="clearForm()"><i class="fa fa-plus"></i>Tambah Slider</a>
+                            <a class="btn btn-success btn-sm me-2 mb-2" data-bs-toggle="modal" data-bs-target="#kt_modal_add_facility" onClick="clearForm()"><i class="fa fa-plus"></i>Tambah {{ __($title) }}</a>
                         </div>
                     </div>
                 </div>
 
-                @include('admin.slider.create')
+                @include('admin.facility.create')
 
                 <div class="card-body pt-0">
 
                     <!--begin::Table-->
-                    <table class="table table-striped table-rounded border border-gray-300 table-row-bordered table-row-gray-300 gy-2 gs-6" id="slider-table">
+                    <table class="table table-striped table-rounded border border-gray-300 table-row-bordered table-row-gray-300 gy-2 gs-6" id="facility-table">
                         <thead style="background-color: #d30e00;">
                             <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                                 <th style="width: 2%;color: white;border-bottom: white;">Number</th>
                                 <th style="width: 2%;color: white;border-bottom: white;">No</th>
+                                <th style="color: white;border-bottom: white;">Nama Fasilitas</th>
                                 <th style="color: white;border-bottom: white;">Gambar</th>
                                 <th style="width: 10%;color: white;border-bottom: white;">Aksi</th>
                             </tr>
@@ -62,10 +63,10 @@
     var table;
 
     $(document).ready(function() {
-        table = $('#slider-table').DataTable({
+        table = $('#facility-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('sliders.list') }}",
+            ajax: "{{ route('facility.list') }}",
             columns: [{
                     data: 'id',
                     name: 'id',
@@ -75,6 +76,10 @@
                     data: 'number',
                     name: 'number'
                 }, // Kolom nomor urut
+                {
+                    data: 'display_name',
+                    name: 'name'
+                },
                 {
                     data: 'display_image',
                     name: 'image'
@@ -105,13 +110,13 @@
             e.preventDefault(); // Hindari pengiriman form secara default
 
             var action = document.getElementById('action').innerText;
-            var id_slider = $('#id_slider').val();
-            var title = $('#title').val();
+            var id_facility = $('#id_facility').val();
+            var name = $('#name').val();
 
             // Buat objek FormData untuk mengirim data form, termasuk file
             var formData = new FormData();
-            formData.append('id', id_slider);
-            formData.append('title', title);
+            formData.append('id', id_facility);
+            formData.append('name', name);
             formData.append('_token', "{{ csrf_token() }}");
 
             var image = document.getElementById('image');
@@ -120,7 +125,7 @@
             }
 
             // Kirim permintaan validasi ke controller via Ajax
-            var url = "{{ url('/slider/validate') }}";
+            var url = "{{ url('/facility/validate') }}";
             $.ajax({
                 url: url + "/" + action,
                 type: "POST",
@@ -134,7 +139,7 @@
                     if (action === "Simpan") {
                         send();
                     } else {
-                        update(id_slider);
+                        update(id_facility);
                     }
                 },
                 error: function(xhr) {
@@ -181,7 +186,7 @@
 
         // Kirim data formulir ke server menggunakan AJAX
         $.ajax({
-            url: "{{ url('slider/store') }}",
+            url: "{{ url('facility/store') }}",
             type: "POST",
             data: formData,
             contentType: false, // Biarkan jQuery menentukan contentType secara otomatis
@@ -189,7 +194,7 @@
             success: function(response) {
                 showSuccessToast(response.message); // Tampilkan notifikasi toast
                 $('#myForm')[0].reset(); // Reset form setelah berhasil menambahkan data
-                $('#kt_modal_add_slider').modal('hide');
+                $('#kt_modal_add_facility').modal('hide');
                 table.ajax.reload(null, false);
             },
             error: function(xhr) {
@@ -205,18 +210,17 @@
         document.getElementById("action").textContent = "Update";
         // Kirim data formulir ke server menggunakan AJAX
 
-        var url = "{{ url('/slider/edit') }}";
+        var url = "{{ url('/facility/edit') }}";
         $.ajax({
             url: url + "/" + id,
             type: "GET",
             success: function(response) {
-                document.getElementById("id_slider").value = response.data.id;
-                document.getElementById("title").value = response.data.title;
-                document.getElementById("url").value = response.data.url;
+                document.getElementById("id_facility").value = response.data.id;
+                document.getElementById("name").value = response.data.name;
 
                 if(response.data.image){
-                    var imageLink = '<br><a href="{{ asset("storage/upload/slider/") }}/' + response.data.image + '" class="btn mb-2 mr-1 btn-sm btn-info snackbar-bg-info" target="_blank">Lihat Cover Sebelumnya</a>';
-                    document.getElementById("show_image").innerHTML = imageLink;
+                    var fileLink = '<br><a href="{{ asset("storage/upload/facility/") }}/' + response.data.image + '" class="btn mb-2 mr-1 btn-sm btn-info snackbar-bg-info" target="_blank">Lihat Gambar Sebelumnya</a>';
+                    document.getElementById("show_image").innerHTML = fileLink;
                 } else {
                     document.getElementById("show_image").textContent = "";
                 }
@@ -244,7 +248,7 @@
 
         // Kirim data formulir ke server menggunakan AJAX
 
-        var url = "{{ url('/slider/edit') }}";
+        var url = "{{ url('/facility/edit') }}";
         $.ajax({
             url: url + "/" + id,
             type: "POST",
@@ -254,7 +258,7 @@
             success: function(response) {
                 showSuccessToast(response.message); // Tampilkan notifikasi toast untuk keberhasilan
                 $('#myForm')[0].reset(); // Reset form setelah berhasil memperbarui data
-                $('#kt_modal_add_slider').modal('hide'); // Tutup modal setelah berhasil memperbarui data
+                $('#kt_modal_add_facility').modal('hide'); // Tutup modal setelah berhasil memperbarui data
                 table.ajax.reload(null, false); // Muat ulang DataTables setelah update
             },
             error: function(xhr) {
@@ -288,7 +292,7 @@
                     'Data Berhasil Dihapus.',
                     'success'
                 ).then(function() {
-                    var url = "{{ url('/slider/delete') }}";
+                    var url = "{{ url('/facility/delete') }}";
                     $.ajax({
                         url: url + "/" + id,
                         success: function(response) {

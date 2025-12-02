@@ -1,7 +1,7 @@
-<div class="modal fade" id="kt_modal_add_slider" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="kt_modal_add_facility" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered mw-900px">
         <div class="modal-content">
-            <div class="modal-header" id="kt_modal_add_slider_header">
+            <div class="modal-header" id="kt_modal_add_facility_header">
                 <h2 class="fw-bolder" id="head_title"></h2>
                 <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
                     <span class="svg-icon svg-icon-1">
@@ -15,14 +15,14 @@
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
             <form id="myForm" action="{{ url('/'.Request::segment(1)) }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                     {{ csrf_field() }}
-                    <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_slider_scroll" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_slider_header" data-kt-scroll-wrappers="#kt_modal_add_slider_scroll" data-kt-scroll-offset="800px">
+                    <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_facility_scroll" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_facility_header" data-kt-scroll-wrappers="#kt_modal_add_facility_scroll" data-kt-scroll-offset="800px">
 
-                        <input type="hidden" class="form-control" id="id_slider"/>
+                        <input type="hidden" class="form-control" id="id_facility"/>
                         
                         <div class="fv-row mb-7">
-                            <label class="required fw-bold fs-6 mb-2">{{ __('Nama Slider') }}</label>
-                            <input type="text" class="form-control" placeholder="Nama Slider" name="title" id="title"/>
-                            <div id="title-error" class="fv-plugins-message-container invalid-feedback"></div>
+                            <label class="required fw-bold fs-6 mb-2">{{ __('Nama Fasilitas Desa') }}</label>
+                            <input type="text" class="form-control" placeholder="Nama Fasilitas Desa" name="name" id="name" />
+                            <div id="name-error" class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
 
                         <div class="fv-row mb-7">
@@ -32,11 +32,6 @@
                             <div id="image-error" class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
                         
-                        <div class="fv-row mb-7">
-                            <label class="fw-bold fs-6 mb-2">{{ __('URL') }}</label>
-                            <input type="text" class="form-control" placeholder="URL" name="url" id="url"/>
-                        </div>
-
                     </div>
                     <div class="text-center pt-15">
                         <button type="submit" class="btn btn-primary btn-flat btn-sm" id="action" title="Tambah Data"> Simpan</button>
