@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
@@ -89,6 +90,7 @@ class SliderController extends Controller
         if ($request->ajax()) {
             $slider = new Slider();
             $slider->fill($request->all());
+            $slider->work_unit_id = Auth::user()->work_unit_id;
 
             if($request->category=='slider'){
                 $slider->category = 'Web';
@@ -148,12 +150,6 @@ class SliderController extends Controller
             $slider->title = $request->title;
             $slider->url = $request->url;
             
-            if($request->category=='slider'){
-                $slider->category = 'Web';
-            } else {
-                $slider->category = 'SPMB';
-            }
-
             if ($slider->image && $request->file('image') != "") {
                 Storage::delete('upload/slider/' . $slider->image);
             }

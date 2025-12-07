@@ -324,6 +324,90 @@ $setting = \App\Helpers\Helpers::setting();
 									</div>
 								</div>
 								
+								<div data-kt-menu-trigger="click" class="menu-item @if(in_array(Request::segment(1), array('academic','non_academic'))) here show @endif menu-accordion">
+									<span class="menu-link">
+										<span class="menu-icon" style="margin-right: 15px">
+											<img src="{{ asset('storage/menu/icons8-certificate-100.png') }}" width="30" height="30" >
+										</span>
+										<span class="menu-title">Prestasi</span>
+										<span class="menu-arrow"></span>
+									</span>
+									<div class="menu-sub menu-sub-accordion menu-active-bg">
+										<div class="menu-item">
+											<a class="menu-link @if(Request::segment(1)=='academic') active @endif " href="{{ url('academic') }}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">Akademik</span>
+											</a>
+										</div>
+										<div class="menu-item">
+											<a class="menu-link @if(Request::segment(1)=='non_academic') active @endif " href="{{ url('non_academic') }}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">Non Akademik</span>
+											</a>
+										</div>
+									</div>
+								</div>
+								
+								<div data-kt-menu-trigger="click" class="menu-item @if(in_array(Request::segment(1), array('featured_program','extracurricular'))) here show @endif menu-accordion">
+									<span class="menu-link">
+										<span class="menu-icon" style="margin-right: 15px">
+											<img src="{{ asset('storage/menu/icons8-list-1002.png') }}" width="30" height="30" >
+										</span>
+										<span class="menu-title">Program</span>
+										<span class="menu-arrow"></span>
+									</span>
+									<div class="menu-sub menu-sub-accordion menu-active-bg">
+										<div class="menu-item">
+											<a class="menu-link @if(Request::segment(1)=='featured_program') active @endif " href="{{ url('featured_program') }}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">Program Unggulan</span>
+											</a>
+										</div>
+										<div class="menu-item">
+											<a class="menu-link @if(Request::segment(1)=='extracurricular') active @endif " href="{{ url('extracurricular') }}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">Ekstrakulikuler</span>
+											</a>
+										</div>
+									</div>
+								</div>
+								
+								<div data-kt-menu-trigger="click" class="menu-item @if(in_array(Request::segment(1), array('curriculum','academic_calendar'))) here show @endif menu-accordion">
+									<span class="menu-link">
+										<span class="menu-icon" style="margin-right: 15px">
+											<img src="{{ asset('storage/menu/icons8-list-1002.png') }}" width="30" height="30" >
+										</span>
+										<span class="menu-title">Akademik</span>
+										<span class="menu-arrow"></span>
+									</span>
+									<div class="menu-sub menu-sub-accordion menu-active-bg">
+										<div class="menu-item">
+											<a class="menu-link @if(Request::segment(1)=='curriculum') active @endif " href="{{ url('curriculum') }}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">Kurikulum</span>
+											</a>
+										</div>
+										<div class="menu-item">
+											<a class="menu-link @if(Request::segment(1)=='academic_calendar') active @endif " href="{{ url('academic_calendar') }}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">Kalender Akademik</span>
+											</a>
+										</div>
+									</div>
+								</div>
+								
 								<div class="menu-item">
 									<a class="menu-link @if(Request::segment(1)=="work_unit") active @endif" href="{{ url('/work_unit') }}">
 										<span class="menu-icon" style="margin-right: 15px">
