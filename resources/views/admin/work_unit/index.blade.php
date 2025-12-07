@@ -19,7 +19,7 @@
                     <div class="card-toolbar">
                         <div class="d-flex justify-content-end" data-kt-work_unit-table-toolbar="base">
                             <a href="{{ url('/'.Request::segment(1)) }}" class="btn btn-warning btn-icon btn-sm me-2 mb-2" title="Refresh Halaman"><i class="fa fa-undo"></i></a>
-                            <a class="btn btn-success btn-sm me-2 mb-2" data-bs-toggle="modal" data-bs-target="#kt_modal_add_work_unit" onClick="clearForm()"><i class="fa fa-plus"></i>Tambah {{ __($title)}}</a>
+                            {{--<a class="btn btn-success btn-sm me-2 mb-2" data-bs-toggle="modal" data-bs-target="#kt_modal_add_work_unit" onClick="clearForm()"><i class="fa fa-plus"></i>Tambah {{ __($title)}}</a>--}}
                         </div>
                     </div>
 
@@ -35,7 +35,7 @@
                                 <th style="width: 2%;color: white;border-bottom: white;" >Number</th>
                                 <th style="width: 2%;color: white;border-bottom: white;" >No</th>
                                 <th style="color: white;border-bottom: white;">Nama Unit Kerja</th>
-                                <th style="color: white;border-bottom: white;">Link SPMB</th>
+                                <!-- <th style="color: white;border-bottom: white;">Link SPMB</th> -->
                                 <th style="color: white;border-bottom: white;">Logo</th>
                                 <th style="width: 10%;color: white;border-bottom: white;">Aksi</th>
                             </tr>
@@ -61,7 +61,7 @@
 				{data: 'id', name: 'id', visible: false},
 				{data: 'number', name: 'number'}, // Kolom nomor urut
 				{data: 'display_name', name: 'name'},
-				{data: 'display_spmb_url', name: 'spmb_url'},
+				// {data: 'display_spmb_url', name: 'spmb_url'},
 				{data: 'display_image', name: 'image'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
@@ -142,8 +142,8 @@
     function clearForm(){
         document.getElementById("head_title").textContent = "Tambah {{ __($title)}}";
         $('#myForm')[0].reset();
-        document.getElementById("display_spmb_url").style.display = "none";
-        document.getElementById("display_spmb_requirement").style.display = "none";
+        // document.getElementById("display_spmb_url").style.display = "none";
+        // document.getElementById("display_spmb_requirement").style.display = "none";
         document.getElementById("show_image").textContent = "";
         document.getElementById("action").textContent = "Simpan";
     }
@@ -192,17 +192,17 @@
             success: function (response) {
                 document.getElementById("id_work_unit").value = response.data.id;
                 document.getElementById("name").value = response.data.name;
-                document.getElementById("spmb_status").value = response.data.spmb_status;
-                document.getElementById("spmb_url").value = response.data.spmb_url;
-                CKEDITOR.instances['spmb_requirement'].setData(response.data.spmb_requirement);
+                // document.getElementById("spmb_status").value = response.data.spmb_status;
+                // document.getElementById("spmb_url").value = response.data.spmb_url;
+                // CKEDITOR.instances['spmb_requirement'].setData(response.data.spmb_requirement);
 
-                if(response.data.spmb_status === "Y"){
-                    document.getElementById("display_spmb_url").style.display = "block";
-                    document.getElementById("display_spmb_requirement").style.display = "block";
-                } else {
-                    document.getElementById("display_spmb_url").style.display = "none";
-                    document.getElementById("display_spmb_requirement").style.display = "none";
-                }
+                // if(response.data.spmb_status === "Y"){
+                //     document.getElementById("display_spmb_url").style.display = "block";
+                //     document.getElementById("display_spmb_requirement").style.display = "block";
+                // } else {
+                //     document.getElementById("display_spmb_url").style.display = "none";
+                //     document.getElementById("display_spmb_requirement").style.display = "none";
+                // }
                 
                 if(response.data.image){
                     var imageLink = '<br><a href="{{ asset("storage/upload/work_unit/") }}/' + response.data.image + '" class="btn mb-2 mr-1 btn-sm btn-info snackbar-bg-info" target="_blank">Lihat Logo Sebelumnya</a>';

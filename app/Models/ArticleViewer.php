@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Slider extends Model
+class ArticleViewer extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'work_unit_id',
-        'category',
-        'title',
-        'image',
-        'url'
+        'social_id',
+        'ip_address'
     ];
+
+    public function article(){
+        return $this->belongsTo('App\Models\Article');
+    }
+
 }

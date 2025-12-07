@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Facility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 use Yajra\DataTables\DataTables;
 
 class FacilityController extends Controller
@@ -12,7 +14,7 @@ class FacilityController extends Controller
     ## Show Data
     public function index()
     {
-        $title = "Fasilitas";
+        $title = "Fasilitas Desa";
 		return view('admin.facility.index',compact('title'));
     }
 
@@ -87,9 +89,31 @@ class FacilityController extends Controller
             $facility = New Facility();
             $facility->fill($request->all());
 
-            if($request->image){
-                $facility->image = time().'.'.$request->image->getClientOriginalExtension();
-                Storage::putFileAs('upload/facility',$request->file('image'), $facility->image);
+            ## Ubah width dan Height
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
+
+                // Tentukan ukuran
+                $width = 1600;
+                $height = 1068;
+
+                // Baca file langsung dari upload (tanpa pindah ke temp folder)
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($file->getRealPath())
+                    ->resize($width, $height, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    });
+
+                // Encode gambar ke format tertentu (setara dengan ->encode('png', 75))
+                $encoded = $image->encodeByExtension('png', quality: 75);
+
+                // Simpan ke storage
+                Storage::put('upload/facility/' . $fileName, (string) $encoded);
+
+                // Simpan nama file ke database
+                $facility->image = $fileName;
             }
 
             $facility->save();
@@ -119,11 +143,33 @@ class FacilityController extends Controller
                 Storage::delete('upload/facility/'.$facility->image);
             }
     
-            if($request->file('image')){	
-                $facility->image = time().'.'.$request->image->getClientOriginalExtension();
-                Storage::putFileAs('upload/facility',$request->file('image'), $facility->image);
+            ## Ubah width dan Height
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
+
+                // Tentukan ukuran
+                $width = 1600;
+                $height = 1068;
+
+                // Baca file langsung dari upload (tanpa pindah ke temp folder)
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($file->getRealPath())
+                    ->resize($width, $height, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    });
+
+                // Encode gambar ke format tertentu (setara dengan ->encode('png', 75))
+                $encoded = $image->encodeByExtension('png', quality: 75);
+
+                // Simpan ke storage
+                Storage::put('upload/facility/' . $fileName, (string) $encoded);
+
+                // Simpan nama file ke database
+                $facility->image = $fileName;
             }
-		
+
             $facility->save();
     
             activity()->log('Edit Data Facility With ID = '.$facility->id);

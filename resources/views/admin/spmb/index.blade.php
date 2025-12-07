@@ -3,49 +3,39 @@
 
 <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
+<!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-    <div class="toolbar" id="kt_toolbar">
-        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Data {{ __($title)}}</h1>
-                <span class="h-20px border-gray-200 border-start mx-4"></span>
-                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                    <li class="breadcrumb-item text-muted">
-                        <a href="{{ url('/') }}" class="text-muted text-hover-primary">Beranda</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                    </li>
-                    <li class="breadcrumb-item text-dark">Data {{ __($title) }}</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <!--begin::Post-->
     <div class="post d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
         <div id="kt_content_container" class="container-xxl">
+            <!--begin::Card-->
             <div class="card">
+                <!--begin::Card header-->
                 <div class="card-header border-0 pt-6">
                     <div class="card-title">
+                        <h3>Data {{ __($title)}}</h3>
                     </div>
                     <div class="card-toolbar">
-                        <div class="d-flex justify-content-end" data-kt-slider-table-toolbar="base">
+                        <div class="d-flex justify-content-end" data-kt-spmb-table-toolbar="base">
                             <a href="{{ url('/'.Request::segment(1)) }}" class="btn btn-warning btn-icon btn-sm me-2 mb-2" title="Refresh Halaman"><i class="fa fa-undo"></i></a>
-                            <a class="btn btn-success btn-sm me-2 mb-2" data-bs-toggle="modal" data-bs-target="#kt_modal_add_slider" onClick="clearForm()"><i class="fa fa-plus"></i>Tambah Slider</a>
+                            {{--<a class="btn btn-success btn-sm me-2 mb-2" data-bs-toggle="modal" data-bs-target="#kt_modal_add_spmb" onClick="clearForm()"><i class="fa fa-plus"></i>Tambah {{ __($title)}}</a>--}}
                         </div>
                     </div>
+
+                    @include('admin.spmb.create')
                 </div>
-
-                @include('admin.slider.create')
-
+											   
                 <div class="card-body pt-0">
 
                     <!--begin::Table-->
-                    <table class="table table-striped table-rounded border border-gray-300 table-row-bordered table-row-gray-300 gy-2 gs-6" id="slider-table">
+                    <table class="table table-striped table-rounded border border-gray-300 table-row-bordered table-row-gray-300 gy-2 gs-6" id="spmb-table">
                         <thead style="background-color: #d30e00;">
                             <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
-                                <th style="width: 2%;color: white;border-bottom: white;">Number</th>
-                                <th style="width: 2%;color: white;border-bottom: white;">No</th>
-                                <th style="color: white;border-bottom: white;">Gambar</th>
+                                <th style="width: 2%;color: white;border-bottom: white;" >Number</th>
+                                <th style="width: 2%;color: white;border-bottom: white;" >No</th>
+                                <th style="color: white;border-bottom: white;">Nama Unit Kerja</th>
+                                <th style="color: white;border-bottom: white;">Link Pendaftaran SPMB</th>
                                 <th style="width: 10%;color: white;border-bottom: white;">Aksi</th>
                             </tr>
                         </thead>
@@ -61,87 +51,69 @@
 <script>
     var table;
 
-    $(document).ready(function() {
-        table = $('#slider-table').DataTable({
+    $(document).ready(function () {
+        table = $('#spmb-table').DataTable({
             processing: true,
             serverSide: true,
-			ajax: {
-				url: "{{ route('sliders.list', ['url' => Request::segment(1)]) }}",
-				type: 'GET',
-				dataType: 'json',
-			},
-            columns: [{
-                    data: 'id',
-                    name: 'id',
-                    visible: false
-                },
-                {
-                    data: 'number',
-                    name: 'number'
-                }, // Kolom nomor urut
-                {
-                    data: 'display_image',
-                    name: 'image'
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false
-                },
+            ajax: "{{ route('spmb.list') }}",
+            columns: [
+				{data: 'id', name: 'id', visible: false},
+				{data: 'number', name: 'number'}, // Kolom nomor urut
+				{data: 'display_name', name: 'name'},
+				{data: 'display_spmb_url', name: 'spmb_url'},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
-            order: [
-                [0, 'desc'] // Mengatur pengurutan kolom pertama (id) secara descending
-            ],
+			order: [
+				[1, 'desc'] // Mengatur pengurutan kolom pertama (id) secara descending
+			],
             paging: true,
-            drawCallback: function() {
+			drawCallback: function () {
                 var api = this.api();
                 var startIndex = api.context[0]._iDisplayStart; // Indeks baris pertama di halaman
-                api.column(1, {
-                    page: 'current'
-                }).nodes().each(function(cell, i) {
+                api.column(1, {page: 'current'}).nodes().each(function (cell, i) {
                     cell.innerHTML = startIndex + i + 1; // Menghitung nomor urut berdasarkan indeks baris dan nomor halaman
                 });
             }
         });
 
-        $('#myForm').submit(function(e) {
+        $('#myForm').submit(function (e) {
             e.preventDefault(); // Hindari pengiriman form secara default
 
             var action = document.getElementById('action').innerText;
-            var id_slider = $('#id_slider').val();
-            var title = $('#title').val();
+            var id_spmb = $('#id_spmb').val();
+            var name = $('#name').val();
+            var spmb_status = $('#spmb_status').val();
+            var spmb_url = $('#spmb_url').val();
+            var spmb_requirement = $('#spmb_requirement').val();
 
             // Buat objek FormData untuk mengirim data form, termasuk file
             var formData = new FormData();
-            formData.append('id', id_slider);
-            formData.append('title', title);
+            formData.append('id', id_spmb);
+            formData.append('name', name); 
+            formData.append('spmb_status', spmb_status); 
+            formData.append('spmb_url', spmb_url);
+            formData.append('spmb_requirement', spmb_requirement);
             formData.append('_token', "{{ csrf_token() }}");
 
-            var image = document.getElementById('image');
-            if (image.files.length > 0) {
-                formData.append('image', image.files[0]);
-            }
-
             // Kirim permintaan validasi ke controller via Ajax
-            var url = "{{ url('/slider/validate') }}";
+            var url = "{{ url('/spmb/validate') }}";
             $.ajax({
                 url: url + "/" + action,
                 type: "POST",
                 data: formData,
                 contentType: false, // Tidak mengatur contentType secara otomatis
                 processData: false, // Tidak memproses data secara otomatis
-                success: function(response) {
+                success: function (response) {
                     $('.fv-plugins-message-container').html(''); // Hapus pesan kesalahan
                     $('.is-invalid').removeClass('is-invalid'); // Hapus kelas is-invalid dari bidang-bidang yang divalidasi
 
                     if (action === "Simpan") {
                         send();
                     } else {
-                        update(id_slider);
+                        update(id_spmb);
                     }
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     var errors = xhr.responseJSON.errors;
 
                     // Bersihkan semua pesan kesalahan sebelum menampilkan yang baru
@@ -149,7 +121,7 @@
 
                     // Tampilkan pesan kesalahan untuk setiap bidang jika ada
                     if (errors) {
-                        $.each(errors, function(key, value) {
+                        $.each(errors, function (key, value) {
                             $('#' + key + '-error').html(value[0]);
                         });
                     }
@@ -160,82 +132,73 @@
 
     });
 
-    function clearForm() {
-        document.getElementById("head_title").textContent = "Tambah {{ $title }}";
+    function clearForm(){
+        document.getElementById("head_title").textContent = "Tambah {{ __($title)}}";
         $('#myForm')[0].reset();
-        document.getElementById("show_image").textContent = "";
+        document.getElementById("display_spmb_url").style.display = "none";
+        document.getElementById("display_spmb_requirement").style.display = "none";
         document.getElementById("action").textContent = "Simpan";
     }
 
+    // Fungsi untuk menampilkan notifikasi toast dengan ikon centang
     function showSuccessToast(message) {
         toastr.success(message, '', {
-            iconClass: 'toast-success', 
+            iconClass: 'toast-success', // Kelas untuk ikon centang
         });
     }
-
-    function showFailedToast(message) {
-        toastr.success(message, '', {
-            iconClass: 'toast-error',
-        });
-    }
-
+    
     // Create Data
     function send() {
         var formData = new FormData($('#myForm')[0]); // Buat objek FormData dari formulir
 
         // Kirim data formulir ke server menggunakan AJAX
         $.ajax({
-            url: "{{ url('slider/store') }}",
+            url: "{{ url('spmb/store') }}",
             type: "POST",
             data: formData,
             contentType: false, // Biarkan jQuery menentukan contentType secara otomatis
             processData: false, // Biarkan jQuery menangani proses data secara otomatis
-            success: function(response) {
+            success: function (response) {
                 showSuccessToast(response.message); // Tampilkan notifikasi toast
                 $('#myForm')[0].reset(); // Reset form setelah berhasil menambahkan data
-                $('#kt_modal_add_slider').modal('hide');
+                $('#kt_modal_add_spmb').modal('hide');
                 table.ajax.reload(null, false);
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 // Tangani kesalahan jika pengiriman formulir gagal
                 console.error("Error pengiriman formulir:", xhr);
             }
         });
     }
-
+        
     // Get Data
-    function getData(id) {
-        document.getElementById("head_title").textContent = "Ubah {{ $title }}";
+    function getData(id){
+        document.getElementById("head_title").textContent = "Ubah {{ __($title)}}";
         document.getElementById("action").textContent = "Update";
         // Kirim data formulir ke server menggunakan AJAX
 
-        var url = "{{ url('/slider/edit') }}";
+        var url = "{{ url('/spmb/edit') }}";
         $.ajax({
             url: url + "/" + id,
             type: "GET",
-            success: function(response) {
-                document.getElementById("id_slider").value = response.data.id;
-                document.getElementById("title").value = response.data.title;
-                document.getElementById("url").value = response.data.url;
-                document.getElementById("category").value = response.data.category;
+            success: function (response) {
+                document.getElementById("id_spmb").value = response.data.id;
+                document.getElementById("name").value = response.data.name;
+                document.getElementById("spmb_status").value = response.data.spmb_status;
+                document.getElementById("spmb_url").value = response.data.spmb_url;
+                CKEDITOR.instances['spmb_requirement'].setData(response.data.spmb_requirement);
 
-                if(response.data.image){
-                    var imageLink = '<br><a href="{{ asset("storage/upload/slider/") }}/' + response.data.image + '" class="btn mb-2 mr-1 btn-sm btn-info snackbar-bg-info" target="_blank">Lihat Cover Sebelumnya</a>';
-                    document.getElementById("show_image").innerHTML = imageLink;
+                if(response.data.spmb_status === "Y"){
+                    document.getElementById("display_spmb_url").style.display = "block";
+                    document.getElementById("display_spmb_requirement").style.display = "block";
                 } else {
-                    document.getElementById("show_image").textContent = "";
+                    document.getElementById("display_spmb_url").style.display = "none";
+                    document.getElementById("display_spmb_requirement").style.display = "none";
                 }
+                
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 // Tangani kesalahan jika pengiriman formulir gagal
-                let res = xhr.responseJSON;
-
-                if (res && res.message) {
-                    showFailedToast(res.message);
-                } else {
-                    showFailedToast("Terjadi kesalahan saat menyimpan data.");
-                }
-
                 console.error("Error pengiriman formulir:", xhr);
             }
         });
@@ -246,37 +209,29 @@
         var formData = new FormData($('#myForm')[0]); // Buat objek FormData dari formulir
         formData.append('_token', "{{ csrf_token() }}");
         formData.append('_method', "PUT");
-
+        
         // Kirim data formulir ke server menggunakan AJAX
 
-        var url = "{{ url('/slider/edit') }}";
+        var url = "{{ url('/spmb/edit') }}";
         $.ajax({
             url: url + "/" + id,
             type: "POST",
             data: formData,
             contentType: false, // Biarkan jQuery menentukan contentType secara otomatis
             processData: false, // Biarkan jQuery menangani proses data secara otomatis
-            success: function(response) {
+            success: function (response) {
                 showSuccessToast(response.message); // Tampilkan notifikasi toast untuk keberhasilan
                 $('#myForm')[0].reset(); // Reset form setelah berhasil memperbarui data
-                $('#kt_modal_add_slider').modal('hide'); // Tutup modal setelah berhasil memperbarui data
+                $('#kt_modal_add_spmb').modal('hide'); // Tutup modal setelah berhasil memperbarui data
                 table.ajax.reload(null, false); // Muat ulang DataTables setelah update
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 // Tangani kesalahan jika pengiriman formulir gagal
-                let res = xhr.responseJSON;
-
-                if (res && res.message) {
-                    showFailedToast(res.message);
-                } else {
-                    showFailedToast("Terjadi kesalahan saat menyimpan data.");
-                }
-
                 console.error("Error pengiriman formulir:", xhr);
             }
         });
     }
-
+    
     // Delete Data
     function deleteData(id) {
         new Swal({
@@ -286,31 +241,22 @@
             showCancelButton: true,
             confirmButtonText: 'Delete',
             padding: '2em'
-        }).then(function(result) {
+        }).then(function (result) {
             if (result.isConfirmed) {
                 new Swal(
                     'Deleted!',
                     'Data Berhasil Dihapus.',
                     'success'
-                ).then(function() {
-                    var url = "{{ url('/slider/delete') }}";
+                ).then(function () {
+                    var url = "{{ url('/spmb/delete') }}";
                     $.ajax({
                         url: url + "/" + id,
-                        success: function(response) {
+                        success: function (response) {
                             showSuccessToast(response.message);
                             $('#myForm')[0].reset();
                             table.ajax.reload(null, false);
                         },
-                        error: function(xhr) {
-                            // Tangani kesalahan jika pengiriman formulir gagal
-                            let res = xhr.responseJSON;
-
-                            if (res && res.message) {
-                                showFailedToast(res.message);
-                            } else {
-                                showFailedToast("Terjadi kesalahan saat menyimpan data.");
-                            }
-
+                        error: function (xhr) {
                             console.error("Error pengiriman formulir:", xhr);
                         }
                     });
@@ -318,7 +264,10 @@
             }
         });
     }
+
+
+
 </script>
 
-
+       
 @endsection

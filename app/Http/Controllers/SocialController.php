@@ -3,34 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helpers;
-use App\Models\News;
+use App\Models\Social;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
-use Illuminate\Support\Str;
+use Yajra\DataTables\DataTables;
 
-class NewsController extends Controller
+class SocialController extends Controller
 {
     ## Show Data
     public function index()
     {
-        $title = "Berita";
-        return view('admin.news.index', compact('title'));
+        $title = "Sosial dan Dakwah";
+        return view('admin.social.index', compact('title'));
     }
 
     ## Get Data
-    public function get_news_index(Request $request)
+    public function get_social_index(Request $request)
     {
 
         if ($request->ajax()) {
             $counter = 1;
 
-            $news = News::limit(10);
+            $social = Social::limit(10);
 
-            return DataTables::of($news)
+            return DataTables::of($social)
                 ->addIndexColumn()
                 ->addColumn('number', function () use (&$counter) {
                     return $counter++;
@@ -42,7 +42,7 @@ class NewsController extends Controller
                     return $v->user ? $v->user->name : '';
                 })
                 ->addColumn('action', function ($v) {
-                    $btn = '<a href="#" onClick="getData(' . $v->id . ')" id="' . $v->id . '" data-toggle="tooltip" data-placement="top" title="Edit" data-bs-toggle="modal" data-bs-target="#kt_modal_add_news">
+                    $btn = '<a href="#" onClick="getData(' . $v->id . ')" id="' . $v->id . '" data-toggle="tooltip" data-placement="top" title="Edit" data-bs-toggle="modal" data-bs-target="#kt_modal_add_social">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 text-success"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                         </a>';
                     $btn .= '<a href="#" onclick="deleteData(' . $v->id . ')" id="' . $v->id . '" class="warning confirm" data-toggle="tooltip" data-placement="top" title="Hapus">
@@ -88,10 +88,10 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         if ($request->ajax()) {
-            $news = new News();
-            $news->fill($request->all());
-            $news->slug = Str::slug($request->title);
-            $news->user_id = Auth::user()->id;
+            $social = new Social();
+            $social->fill($request->all());
+            $social->slug = Str::slug($request->title);
+            $social->user_id = Auth::user()->id;
 
             ## Ubah width dan Height
             if ($request->hasFile('cover')) {
@@ -114,15 +114,15 @@ class NewsController extends Controller
                 $encoded = $image->encodeByExtension('png', quality: 75);
 
                 // Simpan ke storage
-                Storage::put('upload/news/' . $fileName, (string) $encoded);
+                Storage::put('upload/social/' . $fileName, (string) $encoded);
 
                 // Simpan nama file ke database
-                $news->cover = $fileName;
+                $social->cover = $fileName;
             }
 
-            $news->save();
+            $social->save();
 
-            activity()->log('Create Data News');
+            activity()->log('Create Data Social');
             return response()->json(['success' => true, 'message' => 'Tambah Data Berhasil']);
         }
     }
@@ -131,21 +131,21 @@ class NewsController extends Controller
     public function edit(Request $request, $id)
     {
         if ($request->ajax()) {
-            $news = News::where('id', $id)->first();
-            return response()->json(['success' => true, 'data' => $news]);
+            $social = Social::where('id', $id)->first();
+            return response()->json(['success' => true, 'data' => $social]);
         }
     }
 
     ## Edit Data
-    public function update(Request $request, News $news)
+    public function update(Request $request, Social $social)
     {
         if ($request->ajax()) {
-            $news->title = $request->title;
-            $news->text = $request->text;
-            $news->slug = Str::slug($request->title);
+            $social->title = $request->title;
+            $social->text = $request->text;
+            $social->slug = Str::slug($request->title);
 
-            if ($news->cover && $request->file('cover') != "") {
-                Storage::delete('upload/news/' . $news->cover);
+            if ($social->cover && $request->file('cover') != "") {
+                Storage::delete('upload/social/' . $social->cover);
             }
 
             ## Ubah width dan Height
@@ -169,26 +169,26 @@ class NewsController extends Controller
                 $encoded = $image->encodeByExtension('png', quality: 75);
 
                 // Simpan ke storage
-                Storage::put('upload/news/' . $fileName, (string) $encoded);
+                Storage::put('upload/social/' . $fileName, (string) $encoded);
 
                 // Simpan nama file ke database
-                $news->cover = $fileName;
+                $social->cover = $fileName;
             }
 
-            $news->save();
+            $social->save();
 
-            activity()->log('Edit Data News With ID = ' . $news->id);
+            activity()->log('Edit Data Social With ID = ' . $social->id);
             return response()->json(['success' => true, 'message' => 'Ubah Data Berhasil']);
         }
     }
 
     ## Delete Data
-    public function delete(Request $request, News $news)
+    public function delete(Request $request, Social $social)
     {
         if ($request->ajax()) {
-            Storage::delete('upload/news/' . $news->cover);
-            $news->delete();
-            activity()->log('Delete Data News With ID = ' . $news->id);
+            Storage::delete('upload/social/' . $social->cover);
+            $social->delete();
+            activity()->log('Delete Data Social With ID = ' . $social->id);
             return response()->json(['success' => true, 'message' => 'Hapus Data Berhasil']);
         }
     }
@@ -202,11 +202,11 @@ class NewsController extends Controller
             $extension = $request->file('upload')->getClientOriginalExtension();
             $fileName = $fileName . '_' . time() . '.' . $extension;
 
-            // Simpan ke storage/app/public/news_image
-            $request->file('upload')->storeAs('news_image', $fileName);
+            // Simpan ke storage/app/public/social_image
+            $request->file('upload')->storeAs('social_image', $fileName);
 
             // URL yang dapat diakses publik
-            $url = asset('storage/news_image/' . $fileName);
+            $url = asset('storage/social_image/' . $fileName);
 
             // CKEditor callback
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');

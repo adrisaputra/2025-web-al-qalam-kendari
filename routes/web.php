@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogController;
@@ -11,6 +12,8 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\SocialController;
+use App\Http\Controllers\SpmbController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\WebController;
@@ -54,7 +57,7 @@ Route::middleware(['role:Administrator,Operator'])->group(function () {
     
     ## Slider
     Route::get('/slider', [SliderController::class, 'index'])->name('sliders.index');
-    Route::get('/slider/list', [SliderController::class, 'get_slider_index'])->name('sliders.list');
+    Route::get('/slider/list/{url}', [SliderController::class, 'get_slider_index'])->name('sliders.list');
     Route::post('/slider/store', [SliderController::class, 'store']);
     Route::post('/slider/validate/{action}', [SliderController::class, 'validate']);
     Route::get('/slider/edit/{slider}', [SliderController::class, 'edit']);
@@ -88,6 +91,26 @@ Route::middleware(['role:Administrator,Operator'])->group(function () {
     Route::put('/news/edit/{news}', [NewsController::class, 'update']);
     Route::get('/news/delete/{news}',[NewsController::class, 'delete']);
 
+    ## Article
+    Route::get('/article', [ArticleController::class, 'index'])->name('article.index');
+    Route::get('/article/list', [ArticleController::class, 'get_article_index'])->name('article.list');
+    Route::post('article/upload_image',[ArticleController::class, 'upload_image'])->name('upload_article');
+    Route::post('/article/store', [ArticleController::class, 'store']);
+    Route::post('/article/validate/{action}', [ArticleController::class, 'validate']);
+    Route::get('/article/edit/{article}', [ArticleController::class, 'edit']);
+    Route::put('/article/edit/{article}', [ArticleController::class, 'update']);
+    Route::get('/article/delete/{article}',[ArticleController::class, 'delete']);
+
+    ## Social
+    Route::get('/social', [SocialController::class, 'index'])->name('social.index');
+    Route::get('/social/list', [SocialController::class, 'get_social_index'])->name('social.list');
+    Route::post('social/upload_image',[SocialController::class, 'upload_image'])->name('upload_social');
+    Route::post('/social/store', [SocialController::class, 'store']);
+    Route::post('/social/validate/{action}', [SocialController::class, 'validate']);
+    Route::get('/social/edit/{social}', [SocialController::class, 'edit']);
+    Route::put('/social/edit/{social}', [SocialController::class, 'update']);
+    Route::get('/social/delete/{social}',[SocialController::class, 'delete']);
+
     ## Agenda
     Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda.index');
     Route::get('/agenda/list', [AgendaController::class, 'get_agenda_index'])->name('agenda.list');
@@ -97,6 +120,24 @@ Route::middleware(['role:Administrator,Operator'])->group(function () {
     Route::put('/agenda/edit/{agenda}', [AgendaController::class, 'update']);
     Route::get('/agenda/delete/{agenda}',[AgendaController::class, 'delete']);
 
+    ## Slider SPMB
+    Route::get('/slider_spmb', [SliderController::class, 'index'])->name('sliders.index');
+    Route::get('/slider_spmb/list/{url}', [SliderController::class, 'get_slider_index'])->name('sliders.list');
+    Route::post('/slider_spmb/store', [SliderController::class, 'store']);
+    Route::post('/slider_spmb/validate/{action}', [SliderController::class, 'validate']);
+    Route::get('/slider_spmb/edit/{slider}', [SliderController::class, 'edit']);
+    Route::put('/slider_spmb/edit/{slider}', [SliderController::class, 'update']);
+    Route::get('/slider_spmb/delete/{slider}',[SliderController::class, 'delete']);
+    
+    ## SPMB
+    Route::get('/spmb', [SpmbController::class, 'index'])->name('spmb.index');
+    Route::get('/spmb/list', [SpmbController::class, 'get_spmb_index'])->name('spmb.list');
+    Route::post('/spmb/store', [SpmbController::class, 'store']);
+    Route::post('/spmb/validate/{action}', [SpmbController::class, 'validate']);
+    Route::get('/spmb/edit/{work_unit}', [SpmbController::class, 'edit']);
+    Route::put('/spmb/edit/{work_unit}', [SpmbController::class, 'update']);
+    Route::get('/spmb/delete/{work_unit}',[SpmbController::class, 'delete']);
+    
     ## Album
     Route::get('/album', [AlbumController::class, 'index'])->name('album.index');
     Route::get('/album/list', [AlbumController::class, 'get_album_index'])->name('album.list');

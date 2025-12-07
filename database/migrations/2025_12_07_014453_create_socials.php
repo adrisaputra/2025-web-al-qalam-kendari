@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('socials', function (Blueprint $table) {
             $table->increments('id',11);
             $table->string('title')->nullable();
             $table->string('cover')->nullable();
@@ -20,9 +20,6 @@ return new class extends Migration
             $table->string('file')->nullable();
             $table->integer('count_view')->nullable();
 
-            $table->unsignedBigInteger('work_unit_id');
-            $table->foreign("work_unit_id")->references('id')->on("work_units");
-            
             $table->unsignedBigInteger('user_id');
             $table->foreign("user_id")->references('id')->on("users");
             
@@ -35,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('socials');
     }
 };

@@ -1,8 +1,8 @@
 <script src="{{ url('backend/assets/ckeditor/ckeditor.js')}}"></script>
-<div class="modal fade" id="kt_modal_add_work_unit" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="kt_modal_add_spmb" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered mw-900px">
         <div class="modal-content">
-            <div class="modal-header" id="kt_modal_add_work_unit_header">
+            <div class="modal-header" id="kt_modal_add_spmb_header">
                 <h2 class="fw-bolder" id="head_title"></h2>
                 <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
                     <span class="svg-icon svg-icon-1">
@@ -16,17 +16,17 @@
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                 <form id="myForm" action="{{ url('/'.Request::segment(1)) }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                     {{ csrf_field() }}
-                    <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_work_unit_scroll" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_work_unit_header" data-kt-scroll-wrappers="#kt_modal_add_work_unit_scroll">
+                    <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_spmb_scroll" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_spmb_header" data-kt-scroll-wrappers="#kt_modal_add_spmb_scroll">
 
-                        <input type="hidden" class="form-control" id="id_work_unit"/>
+                        <input type="hidden" class="form-control" id="id_spmb"/>
                             
                         <div class="fv-row mb-7">
                             <label class="required fw-bold fs-6 mb-2">{{ __('Nama Unit Kerja') }}</label>
-                           <input type="text" class="form-control" placeholder="Nama Unit Kerja" name="name" id="name" />
+                            <input type="text" class="form-control" placeholder="Nama Unit Kerja" name="name" id="name" readonly/>
                             <div id="name-error" class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
 
-                        {{--<div class="fv-row mb-7">
+                        <div class="fv-row mb-7">
                             <label class="fw-bold fs-6 mb-2">{{ __('Apakah Unit Kerja Melakukan SPMB ? ') }}</label>
                             <div class="row">
                                 <div class="col-md-3">
@@ -50,13 +50,6 @@
                             <label class="fw-bold fs-6 mb-2">{{ __('Persyaratan Pendaftaran SPMB') }}</label>
                             <textarea name="spmb_requirement" id="spmb_requirement" class="form-control ckeditor"></textarea>
                             <div id="spmb_requirement-error" class="fv-plugins-message-container invalid-feedback"></div>
-                        </div>--}}
-
-                        <div class="fv-row mb-7">
-                            <label class="fw-bold fs-6 mb-2">{{ __('Logo Unit Kerja') }}</label>
-                            <input type="file" name="image" id="image" class="form-control">
-                            <span class="text-red" id="show_image"></span>
-                            <div id="image-error" class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
 
                     </div>

@@ -18,6 +18,7 @@
                     <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_slider_scroll" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_slider_header" data-kt-scroll-wrappers="#kt_modal_add_slider_scroll" data-kt-scroll-offset="800px">
 
                         <input type="hidden" class="form-control" id="id_slider"/>
+                        <input type="text" class="form-control" id="category" value="{{ Request::segment(1) }}"/>
                         
                         <div class="fv-row mb-7">
                             <label class="required fw-bold fs-6 mb-2">{{ __('Nama Slider') }}</label>
