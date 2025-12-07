@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'photo',
+        'work_unit_id',
         'group_id',
         'status',
     ];
@@ -51,6 +52,10 @@ class User extends Authenticatable
     
     public function group(){
         return $this->belongsTo('App\Models\Group');
+    }
+    
+    public function work_unit(){
+        return $this->belongsTo('App\Models\WorkUnit');
     }
     
     public function log(){

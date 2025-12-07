@@ -1,5 +1,5 @@
 <div class="modal fade" id="kt_modal_add_user" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered mw-650px">
+    <div class="modal-dialog modal-dialog-centered mw-900px">
         <div class="modal-content">
             <div class="modal-header" id="kt_modal_add_user_header">
                 <h2 class="fw-bolder" id="head_title"></h2>
@@ -29,17 +29,27 @@
                             <input type="email" class="form-control" placeholder="Email" name="email" id="email" value="{{ old('email') }}" > 
                             <div id="email-error" class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
-                        
-                            <div class="fv-row mb-7">
-                                <label class="required fw-bold fs-6 mb-2">{{ __('Group') }}</label>
-                                <select name="group_id" id="group_id" class="form-control">
-                                    <option value="">- Pilih Group -</option>
-                                    <option value="1">Administrator</option>
-                                    <option value="2">Operator</option>
-                                </select>
-                                <div id="group_id-error" class="fv-plugins-message-container invalid-feedback"></div>
-                            </div>
+                    
+                        <div class="fv-row mb-7">
+                            <label class="required fw-bold fs-6 mb-2">{{ __('Grup') }}</label>
+                            <select name="group_id" id="group_id" class="form-control">
+                                <option value="">- Pilih Group -</option>
+                                <option value="1">Administrator</option>
+                                <option value="2">Operator</option>
+                            </select>
+                            <div id="group_id-error" class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
 
+                        <div class="fv-row mb-7">
+                            <label class="required fw-bold fs-6 mb-2">{{ __('Unit Kerja') }}</label>
+                            <select name="work_unit_id" id="work_unit_id" class="form-control">
+                                <option value="">- Pilih Unit Kerja -</option>
+                                @foreach($work_unit as $v)
+                                    <option value="{{ $v->id }}">{{ $v->name }}</option>
+                                @endforeach
+                            </select>
+                            <div id="work_unit_id-error" class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
 
                         <div class="fv-row mb-7">
                             <label class="required fw-bold fs-6 mb-2">{{ __('Password') }}</label>
@@ -63,7 +73,15 @@
 
                         <div class="fv-row mb-7">
                             <label class="required fw-bold fs-6 mb-2">{{ __('Konfirmasi Password') }}</label>
-                            <input type="password" class="form-control" placeholder="Konfirmasi Password" name="password_confirmation" id="password_confirmation">
+                             <div class="col-md-12" data-kt-password-meter="true">
+                                <div class="position-relative mb-3">
+                                    <input type="password" class="form-control" placeholder="Konfirmasi Password" name="password_confirmation" id="password_confirmation">
+                                    <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
+                                        <i class="bi bi-eye-slash fs-2"></i>
+                                        <i class="bi bi-eye fs-2 d-none"></i>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
 
                     </div>

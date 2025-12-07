@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\WorkUnit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -16,7 +17,8 @@ class UserController extends Controller
     public function index()
     {
         $title = "User";
-		return view('admin.user.index',compact('title'));
+        $work_unit = WorkUnit::get();
+		return view('admin.user.index',compact('title','work_unit'));
     }
 
     ## Get Data
@@ -38,13 +40,11 @@ class UserController extends Controller
                     $group = '<span class="badge badge-primary">Administrator</span>';
                 } else if($v->group_id == 2){
                     $group = '<span class="badge badge-success">Operator</span>';
-                } else {
-                    $group = '<span class="badge badge-danger">Pegawai</span>';
                 } 
                 return $group;
             })
-            ->addColumn('employee', function ($v) {
-                return $v->employee ? $v->employee->name : '-';
+            ->addColumn('work_unit', function ($v) {
+                return $v->work_unit ? $v->work_unit->name : '-';
             })
             ->addColumn('action', function ($v) {
                 $btn = '<a href="#" onClick="getData('.$v->id.')" id="'.$v->id.'" data-toggle="tooltip" data-placement="top" title="Edit" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
@@ -66,29 +66,41 @@ class UserController extends Controller
     {
         if ($request->ajax()) {
 
+            
+            $attributes = [
+                'name' => 'Nama User',
+                'email' => 'Email',
+                'work_unit_id' => 'Unit Kerja',
+                'group_id' => 'Grup',
+                'password' => 'Password'
+            ];
+
             if($action==="Simpan"){
 
                 if($request->group_id == 2){
-                    $request->validate([
+                    $rules = [
                         'name' => 'required|string|max:255',
                         'email' => 'required|string|email|max:255|unique:users',
+                        'work_unit_id' => 'required',
                         'group_id' => 'required',
                         'password' => 'required|string|min:8|confirmed'
-                    ]);
+                    ];
                 } else if($request->group_id == 3){
-                    $request->validate([
+                    $rules = [
                         'name' => 'required|string|max:255',
                         'email' => 'required|string|email|max:255|unique:users',
+                        'work_unit_id' => 'required',
                         'group_id' => 'required',
                         'password' => 'required|string|min:8|confirmed'
-                    ]);
+                    ];
                 } else {
-                    $request->validate([
+                    $rules = [
                         'name' => 'required|string|max:255',
                         'email' => 'required|string|email|max:255|unique:users',
+                        'work_unit_id' => 'required',
                         'group_id' => 'required',
                         'password' => 'required|string|min:8|confirmed',
-                    ]);
+                    ];
                     
                 }
 
@@ -96,44 +108,52 @@ class UserController extends Controller
 
                 if($request->password){
                     if($request->group_id == 2){
-                        $request->validate([
+                        $rules = [
                             'name' => 'required|string|max:255',
+                            'work_unit_id' => 'required',
                             'group_id' => 'required',
                             'password' => 'required|string|min:8|confirmed'
-                        ]);
+                        ];
                     } else if($request->group_id == 3){
-                        $request->validate([
+                        $rules = [
                             'name' => 'required|string|max:255',
+                            'work_unit_id' => 'required',
                             'group_id' => 'required',
                             'password' => 'required|string|min:8|confirmed'
-                        ]);
+                        ];
                     } else {
-                        $request->validate([
+                        $rules = [
                             'name' => 'required|string|max:255',
+                            'work_unit_id' => 'required',
                             'group_id' => 'required',
                             'password' => 'required|string|min:8|confirmed'
-                        ]);
+                        ];
                     }
                 } else {
                     if($request->group_id == 2){
-                        $request->validate([
+                        $rules = [
                             'name' => 'required|string|max:255',
+                            'work_unit_id' => 'required',
                             'group_id' => 'required'
-                        ]);
+                        ];
                     } else if($request->group_id == 3){
-                        $request->validate([
+                        $rules = [
                             'name' => 'required|string|max:255',
+                            'work_unit_id' => 'required',
                             'group_id' => 'required'
-                        ]);
+                        ];
                     } else {
-                        $request->validate([
+                        $rules = [
                             'name' => 'required|string|max:255',
+                            'work_unit_id' => 'required',
                             'group_id' => 'required'
-                        ]);
+                        ];
                     }
                 }
             }
     
+            $request->validate($rules, [],$attributes);
+            
             return response()->json(['success' => true]);
         }
     }
@@ -170,6 +190,7 @@ class UserController extends Controller
             if($request->password){
                 $user->password = Hash::make($request->password);
             }
+            $user->work_unit_id = $request->work_unit_id;
             $user->group_id = $request->group_id;
             $user->save();
     

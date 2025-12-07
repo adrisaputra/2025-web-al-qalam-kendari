@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends($layout)
 @section('content')
 <!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -40,7 +40,7 @@
                                 <!--begin::Row-->
                                 <div class="row g-0">
                                     <div class="col bg-info px-4 py-8 rounded-2 me-3 mb-7" style="background-color: #2196f3 !important;">
-                                        <a href="{{ url('employee') }}" style="text-decoration:none; color:white;">    
+                                        <a href="{{ url('news') }}" style="text-decoration:none; color:white;">    
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <!--end::Svg Icon-->
@@ -53,7 +53,7 @@
                                         </a>
                                     </div>
                                     <div class="col bg-info px-4 py-8 rounded-2 me-3 mb-7" style="background-color: #f44336 !important;">
-                                       <a href="{{ url('promotion') }}" style="text-decoration:none; color:white;">
+                                       <a href="{{ url('user') }}" style="text-decoration:none; color:white;">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <!--end::Svg Icon-->

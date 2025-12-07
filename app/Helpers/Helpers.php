@@ -3,13 +3,18 @@
 namespace App\Helpers;
 
 use App\Models\Setting;   //nama model
+use Illuminate\Support\Facades\Auth;
 
 class Helpers
 {
     
     public static function setting()
     {
-        $setting = Setting::find(1);
+        if(Auth::user()){
+            $setting = Setting::where('work_unit_id',Auth::user()->work_unit_id)->first();
+        } else {
+            $setting = Setting::find(1);
+        }
         return $setting;
     }
     

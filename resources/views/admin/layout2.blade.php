@@ -182,14 +182,6 @@ $setting = \App\Helpers\Helpers::setting();
 									</span>
 									<div class="menu-sub menu-sub-accordion menu-active-bg">
 										<div class="menu-item">
-											<a class="menu-link @if(Request::segment(1)=='history') active @endif" href="{{ url('history') }}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-												<span class="menu-title">Sejarah</span>
-											</a>
-										</div>
-										<div class="menu-item">
 											<a class="menu-link @if(Request::segment(1)=='vision') active @endif" href="{{ url('vision') }}">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
@@ -242,22 +234,6 @@ $setting = \App\Helpers\Helpers::setting();
 											</a>
 										</div>
 										<div class="menu-item">
-											<a class="menu-link @if(Request::segment(1)=='article') active @endif" href="{{ url('article') }}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-												<span class="menu-title">Artikel</span>
-											</a>
-										</div>
-										<div class="menu-item">
-											<a class="menu-link @if(Request::segment(1)=='social') active @endif" href="{{ url('social') }}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-												<span class="menu-title">Sosial dan Dakwah</span>
-											</a>
-										</div>
-										<div class="menu-item">
 											<a class="menu-link @if(Request::segment(1)=='agenda') active @endif" href="{{ url('agenda') }}">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
@@ -278,47 +254,11 @@ $setting = \App\Helpers\Helpers::setting();
 									</span>
 									<div class="menu-sub menu-sub-accordion menu-active-bg">
 										<div class="menu-item">
-											<a class="menu-link @if(Request::segment(1)=='slider_spmb') active @endif " href="{{ url('slider_spmb') }}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-												<span class="menu-title">Slider</span>
-											</a>
-										</div>
-										<div class="menu-item">
 											<a class="menu-link @if(Request::segment(1)=='spmb') active @endif " href="{{ url('spmb') }}">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
 												<span class="menu-title">Pendaftaran</span>
-											</a>
-										</div>
-									</div>
-								</div>
-								
-								<div data-kt-menu-trigger="click" class="menu-item @if(in_array(Request::segment(1), array('album','photo','video'))) here show @endif menu-accordion">
-									<span class="menu-link">
-										<span class="menu-icon" style="margin-right: 15px">
-											<img src="{{ asset('storage/menu/icons8-gallery-100.png') }}" width="30" height="30" >
-										</span>
-										<span class="menu-title">Galeri</span>
-										<span class="menu-arrow"></span>
-									</span>
-									<div class="menu-sub menu-sub-accordion menu-active-bg">
-										<div class="menu-item">
-											<a class="menu-link @if(Request::segment(1)=='album') active @endif " href="{{ url('album') }}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-												<span class="menu-title">Foto</span>
-											</a>
-										</div>
-										<div class="menu-item">
-											<a class="menu-link @if(Request::segment(1)=='video') active @endif " href="{{ url('video') }}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-												<span class="menu-title">Video</span>
 											</a>
 										</div>
 									</div>
@@ -408,13 +348,32 @@ $setting = \App\Helpers\Helpers::setting();
 									</div>
 								</div>
 								
-								<div class="menu-item">
-									<a class="menu-link @if(Request::segment(1)=="work_unit") active @endif" href="{{ url('/work_unit') }}">
+								<div data-kt-menu-trigger="click" class="menu-item @if(in_array(Request::segment(1), array('album','photo','video'))) here show @endif menu-accordion">
+									<span class="menu-link">
 										<span class="menu-icon" style="margin-right: 15px">
-											<img src="{{ asset('storage/menu/icons8-list-100.png') }}" width="30" height="30" >
+											<img src="{{ asset('storage/menu/icons8-gallery-100.png') }}" width="30" height="30" >
 										</span>
-										<span class="menu-title">Unit Kerja</span>
-									</a>
+										<span class="menu-title">Galeri</span>
+										<span class="menu-arrow"></span>
+									</span>
+									<div class="menu-sub menu-sub-accordion menu-active-bg">
+										<div class="menu-item">
+											<a class="menu-link @if(Request::segment(1)=='album') active @endif " href="{{ url('album') }}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">Foto</span>
+											</a>
+										</div>
+										<div class="menu-item">
+											<a class="menu-link @if(Request::segment(1)=='video') active @endif " href="{{ url('video') }}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">Video</span>
+											</a>
+										</div>
+									</div>
 								</div>
 								
 								@if(Auth::user()->group_id == 1)

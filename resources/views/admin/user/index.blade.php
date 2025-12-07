@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends($layout)
 @section('content')
 
 <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
@@ -35,7 +35,7 @@
                                     <th style="width: 2%;color: white;border-bottom: white;" >No</th>
                                     <th style="color: white;border-bottom: white;">Nama User</th>
                                     <th style="color: white;border-bottom: white;">Email</th>
-                                    <th style="color: white;border-bottom: white;">Nama Pegawai</th>
+                                    <th style="color: white;border-bottom: white;">Unit Kerja</th>
                                     <th style="color: white;border-bottom: white;">Grup</th>
                                     <th style="width: 10%;color: white;border-bottom: white;">Aksi</th>
                                 </tr>
@@ -63,7 +63,7 @@
 				{data: 'number', name: 'number'}, // Kolom nomor urut
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
-                {data: 'employee', name: 'employee'},
+                {data: 'work_unit', name: 'work_unit'},
                 {data: 'group', name: 'group'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
@@ -88,9 +88,8 @@
             var name = $('#name').val();
             var email = $('#email').val();
             var password = $('#password').val();
+            var work_unit_id = $('#work_unit_id').val();
             var group_id = $('#group_id').val();
-            var agency_id = $('#agency_id').val();
-            var counter_id = $('#counter_id').val();
             var password_confirmation = $('#password_confirmation').val();
 
             // Buat objek FormData untuk mengirim data form, termasuk file
@@ -99,9 +98,8 @@
             formData.append('name', name);
             formData.append('email', email);
             formData.append('password', password);
+            formData.append('work_unit_id', work_unit_id);
             formData.append('group_id', group_id);
-            formData.append('agency_id', agency_id);
-            formData.append('counter_id', counter_id);
             formData.append('password_confirmation', password_confirmation);
             formData.append('_token', "{{ csrf_token() }}");
 
@@ -194,9 +192,8 @@
                 document.getElementById("id_user").value = response.data.id;
                 document.getElementById("name").value = response.data.name;
                 document.getElementById("email").value = response.data.email;
+                document.getElementById("work_unit_id").value = response.data.work_unit_id;
                 document.getElementById("group_id").value = response.data.group_id;
-                document.getElementById("agency_id").value = response.data.agency_id;
-                document.getElementById("counter_id").value = response.data.counter_id;
                 togglePositionInput(response.data.group_id);
                 console.log(response.data.group_id);
 
