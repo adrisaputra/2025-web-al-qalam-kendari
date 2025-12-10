@@ -172,7 +172,7 @@ $setting = \App\Helpers\Helpers::setting();
 									</a>
 								</div>
 								
-								<div data-kt-menu-trigger="click" class="menu-item @if(in_array(Request::segment(1), array('history','vision','mission','structure','facility'))) here show @endif menu-accordion">
+								<div data-kt-menu-trigger="click" class="menu-item @if(in_array(Request::segment(1), array('profile','vision','mission','structure','facility'))) here show @endif menu-accordion">
 									<span class="menu-link">
 										<span class="menu-icon" style="margin-right: 15px">
 											<img src="{{ asset('storage/menu/icons8-home-100.png') }}" width="30" height="30" >
@@ -182,11 +182,11 @@ $setting = \App\Helpers\Helpers::setting();
 									</span>
 									<div class="menu-sub menu-sub-accordion menu-active-bg">
 										<div class="menu-item">
-											<a class="menu-link @if(Request::segment(1)=='history') active @endif" href="{{ url('history') }}">
+											<a class="menu-link @if(Request::segment(1)=='profile') active @endif" href="{{ url('profile') }}">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">Sejarah</span>
+												<span class="menu-title">Profil</span>
 											</a>
 										</div>
 										<div class="menu-item">

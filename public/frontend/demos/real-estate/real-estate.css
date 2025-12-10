@@ -44,7 +44,7 @@
 		color: #222;
 	}
 
-	.top-links-item a { font-family: 'Rubik'; }
+	.top-links-item a { font-family: 'Outfit'; }
 
 	.sub-menu-container:not(.mega-menu-column) {
 		width: 210px;
@@ -62,7 +62,7 @@
 		font-weight: 400;
 		padding: 12px 17px;
 		color: #FFF;
-		font-family: 'Rubik', sans-serif !important;
+		font-family: 'Outfit', sans-serif !important;
 	}
 
 	.sub-menu-container .menu-item:hover > .menu-link { padding-left: 20px; }
@@ -99,7 +99,7 @@
 	padding-left: 17px;
 	padding-right: 17px;
 	font-weight: 400;
-	font-size: 13px;
+	font-size: 14px;
 	-webkit-transition: all .3s ease;
 	-o-transition: all .3s ease;
 	transition: all .3s ease;
@@ -136,7 +136,7 @@
 	background-color: #2C3E50;
 	font-size: 15px;
 	font-weight: 600;
-	font-family: 'Rubik', sans-serif;
+	font-family: 'Outfit', sans-serif;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.1);

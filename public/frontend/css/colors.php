@@ -9,7 +9,7 @@ header ("Content-Type:text/css");
  *
  ================================================================== */
 
-$color = "#1ABC9C"; // Change your Color Here
+$color = "#FF5722"; // Change your Color Here
 
 /** ===============================================================
  *
@@ -48,11 +48,11 @@ if( !$color OR !checkhexcolor( $color ) ) {
 -----------------------------------------------------------------*/
 
 
-::selection { background: <?php echo $color; ?>; }
+::selection { background: #FF5722; }
 
-::-moz-selection { background: <?php echo $color; ?>; }
+::-moz-selection { background: #FF5722; }
 
-::-webkit-selection { background: <?php echo $color; ?>; }
+::-webkit-selection { background: #FF5722; }
 
 
 a,
@@ -108,7 +108,7 @@ h6 > span:not(.nocolor):not(.badge),
 .dark .product-title h3 a:hover,
 .dark .single-product .product-title h2 a:hover,
 .dark .product-price ins,
-.dark .tab-nav-lg li.ui-tabs-active a { color: <?php echo $color; ?>; }
+.dark .tab-nav-lg li.ui-tabs-active a { color: #FF5722; }
 
 .color,
 .h-text-color:hover,
@@ -118,7 +118,7 @@ a.h-text-color:hover,
 .tagcloud a:hover,
 .nav-tree li:hover > a,
 .nav-tree li.current > a,
-.nav-tree li.active > a { color: <?php echo $color; ?> !important; }
+.nav-tree li.active > a { color: #FF5722 !important; }
 
 .top-cart-number::before,
 #page-menu-wrap,
@@ -163,7 +163,7 @@ input.switch-toggle-flat:checked + label::after,
 .dark #gotoTop:hover,
 .dark input.switch-toggle-round:checked + label::before,
 .dark input.switch-toggle-flat:checked + label,
-.dark input.switch-toggle-flat:checked + label::after { background-color: <?php echo $color; ?>; }
+.dark input.switch-toggle-flat:checked + label::after { background-color: #FF5722; }
 
 .bg-color,
 .bg-color #header-wrap,
@@ -176,14 +176,14 @@ input.switch-toggle-flat:checked + label::after,
 .widget-filter-links li.active-filter span,
 .page-item.active .page-link,
 .page-link:hover,
-.page-link:focus { background-color: <?php echo $color; ?> !important; }
+.page-link:focus { background-color: #FF5722 !important; }
 
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-themecolor,
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-themecolor,
 .checkbox-style:checked + .checkbox-style-1-label::before,
 .checkbox-style:checked + .checkbox-style-2-label::before,
 .checkbox-style:checked + .checkbox-style-3-label::before,
-.radio-style:checked + .radio-style-3-label::before { background: <?php echo $color; ?>; }
+.radio-style:checked + .radio-style-3-label::before { background: #FF5722; }
 
 .irs-bar,
 .irs-from,
@@ -191,7 +191,7 @@ input.switch-toggle-flat:checked + label::after,
 .irs-single,
 .irs-handle > i:first-child,
 .irs-handle.state_hover > i:first-child,
-.irs-handle:hover > i:first-child { background-color: <?php echo $color; ?> !important; }
+.irs-handle:hover > i:first-child { background-color: #FF5722 !important; }
 
 .top-cart-item-image:hover,
 .grid-filter.style-3 li.activeFilter a,
@@ -203,20 +203,20 @@ input.switch-toggle-flat:checked + label::after,
 .heading-block.border-color::after,
 .page-item.active .page-link,
 .page-link:focus,
-.dark .cart-product-thumbnail img:hover { border-color: <?php echo $color; ?>; }
+.dark .cart-product-thumbnail img:hover { border-color: #FF5722; }
 
 .border-color,
 .process-steps li.active a,
 .process-steps li.ui-tabs-active a,
 .tagcloud a:hover,
-.page-link:hover { border-color: <?php echo $color; ?> !important; }
+.page-link:hover { border-color: #FF5722 !important; }
 
 .top-links-sub-menu,
 .top-links-section,
 .tabs-tb .tab-nav li.ui-tabs-active a,
 .dark .top-links-sub-menu,
 .dark .top-links-section,
-.dark .tabs-tb .tab-nav li.ui-tabs-active a { border-top-color: <?php echo $color; ?>; }
+.dark .tabs-tb .tab-nav li.ui-tabs-active a { border-top-color: #FF5722; }
 
 .title-border-color::before,
 .title-border-color::after,
@@ -225,20 +225,20 @@ input.switch-toggle-flat:checked + label::after,
 .irs-to::after,
 .irs-from::before,
 .irs-to::before,
-.irs-single::before { border-top-color: <?php echo $color; ?> !important; }
+.irs-single::before { border-top-color: #FF5722 !important; }
 
-.title-block { border-left-color: <?php echo $color; ?>; }
+.title-block { border-left-color: #FF5722; }
 
 .rtl .title-block {
 	border-left-color: transparent;
-	border-right-color: <?php echo $color; ?>;
+	border-right-color: #FF5722;
 }
 
-.title-block-right { border-right-color: <?php echo $color; ?>; }
+.title-block-right { border-right-color: #FF5722; }
 
 .rtl .title-block-right {
 	border-right-color: transparent;
-	border-left-color: <?php echo $color; ?>;
+	border-left-color: #FF5722;
 }
 
 .more-link,
@@ -248,22 +248,22 @@ input.switch-toggle-flat:checked + label::after,
 .title-bottom-border h3,
 .title-bottom-border h4,
 .title-bottom-border h5,
-.title-bottom-border h6 { border-bottom-color: <?php echo $color; ?>; }
+.title-bottom-border h6 { border-bottom-color: #FF5722; }
 
 .fbox-effect.fbox-dark .fbox-icon i::after,
-.dark .fbox-effect.fbox-dark .fbox-icon i::after { box-shadow: 0 0 0 2px <?php echo $color; ?>; }
+.dark .fbox-effect.fbox-dark .fbox-icon i::after { box-shadow: 0 0 0 2px #FF5722; }
 
 .fbox-border.fbox-effect.fbox-dark .fbox-icon i:hover,
 .fbox-border.fbox-effect.fbox-dark:hover .fbox-icon i,
 .dark .fbox-border.fbox-effect.fbox-dark .fbox-icon i:hover,
-.dark .fbox-border.fbox-effect.fbox-dark:hover .fbox-icon i { box-shadow: 0 0 0 1px <?php echo $color; ?>; }
+.dark .fbox-border.fbox-effect.fbox-dark:hover .fbox-icon i { box-shadow: 0 0 0 1px #FF5722; }
 
 
 @media (min-width: 992px) {
 
 	.sub-menu-container .menu-item:hover > .menu-link,
 	.mega-menu-style-2 .mega-menu-title > .menu-link:hover,
-	.dark .mega-menu-style-2 .mega-menu-title:hover > .menu-link { color: <?php echo $color; ?>; }
+	.dark .mega-menu-style-2 .mega-menu-title:hover > .menu-link { color: #FF5722; }
 
 	.style-3 .menu-container > .menu-item.current > .menu-link,
 	.sub-title .menu-container > .menu-item:hover > .menu-link::after,
@@ -271,11 +271,11 @@ input.switch-toggle-flat:checked + label::after,
 	.page-menu-sub-menu,
 	.dots-menu .page-menu-item.current > a,
 	.dots-menu .page-menu-item div,
-	.dark .style-3 .menu-container > .menu-item.current > .menu-link { background-color: <?php echo $color; ?>; }
+	.dark .style-3 .menu-container > .menu-item.current > .menu-link { background-color: #FF5722; }
 
 	.style-4 .menu-container > .menu-item:hover > .menu-link,
 	.style-4 .menu-container > .menu-item.current > .menu-link,
-	.dots-menu.dots-menu-border .page-menu-item.current > a { border-color: <?php echo $color; ?>; }
+	.dots-menu.dots-menu-border .page-menu-item.current > a { border-color: #FF5722; }
 
 	.sub-menu-container,
 	.mega-menu-content,
@@ -284,12 +284,12 @@ input.switch-toggle-flat:checked + label::after,
 	.top-cart-content,
 	.dark .sub-menu-container,
 	.dark .mega-menu-content,
-	.dark .top-cart-content { border-top-color: <?php echo $color; ?>; }
+	.dark .top-cart-content { border-top-color: #FF5722; }
 
-	.dots-menu .page-menu-item div::after { border-left-color: <?php echo $color; ?>; }
+	.dots-menu .page-menu-item div::after { border-left-color: #FF5722; }
 
 	.rtl .dots-menu .page-menu-item div::after {
 		border-left-color: transparent;
-		border-right-color: <?php echo $color; ?>;
+		border-right-color: #FF5722;
 	}
 }

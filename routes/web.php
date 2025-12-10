@@ -68,7 +68,7 @@ Route::middleware(['role:Administrator,Operator'])->group(function () {
     Route::get('/slider/delete/{slider}',[SliderController::class, 'delete']);
     
     ## Profiles
-    Route::get('/history', [ProfileController::class, 'index']);
+    Route::get('/profile', [ProfileController::class, 'index']);
     Route::get('/vision', [ProfileController::class, 'index']);
     Route::get('/mission', [ProfileController::class, 'index']);
     Route::get('/structure', [ProfileController::class, 'index']);

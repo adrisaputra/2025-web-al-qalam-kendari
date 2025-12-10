@@ -1,0 +1,123 @@
+
+	.feature-box {
+		background: linear-gradient(135deg, #ff9800, #F44336);
+		padding: 20px;
+		border-radius: 12px;
+
+		/* Transition halus */
+		transition: all 10s ease;
+	}
+
+	.feature-box:hover {
+		transform: translateY(-5px);
+		background: linear-gradient(135deg, #F44336, #ff9800);
+	}
+
+	/* Wrapper */
+	.news-section {
+		padding: 40px 0;
+		background: #f7f7f7;
+		font-family: Arial, sans-serif;
+	}
+
+	.news-title {
+		font-size: 32px;
+		font-weight: 700;
+		color: #e53935;
+		text-align: center;
+	}
+
+	.news-subtitle {
+		text-align: center;
+		margin-top: 5px;
+		color: #555;
+	}
+
+	/* Grid */
+	.news-grid {
+		margin-top: 40px;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		gap: 25px;
+	}
+
+	.news-grid {
+		margin-top: 40px;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		gap: 25px;
+	}
+
+	/* Card */
+	.news-card {
+		background: #fff;
+		border-radius: 12px;
+		overflow: hidden;
+		box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+		position: relative;
+		transition: 0.3s;
+	}
+
+	.news-card:hover {
+		transform: translateY(-5px);
+	}
+
+	/* Image */
+	.news-img img {
+		width: 100%;
+		height: 230px;
+		object-fit: cover;
+	}
+
+	/* Body */
+	.news-body {
+		padding: 20px;
+	}
+
+	.news-heading {
+		font-size: 18px;
+		font-weight: 700;
+		min-height: 60px;
+		color: #333;
+	}
+
+	.news-desc {
+		margin-top: 10px;
+		color: #777;
+		font-size: 14px;
+	}
+
+	/* Meta */
+	.news-meta {
+		margin-top: 15px;
+		font-size: 13px;
+		color: #444;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	/* Date badge */
+	.news-date {
+		background: linear-gradient(135deg, #FF5722, #FFC107);
+
+		color: #fff;
+		padding: 7px 15px;
+		position: absolute;
+		right: -4px;
+		bottom: 25px;
+		border-radius: 6px;
+		font-weight: bold;
+		font-size: 14px;
+	}
+
+	#agenda-table {
+		font-size: 14px !important;
+	}
+
+	#agenda-table thead th {
+		font-size: 14px !important;
+	}
+
+	#agenda-table tbody td {
+		font-size: 14px !important;
+	}

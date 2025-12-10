@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------
-    Fonts
+	Fonts
 
-    Replace your Fonts as necessary
+	Replace your Fonts as necessary
 -----------------------------------------------------------------*/
 
 
@@ -33,7 +33,6 @@ label,
 .widget-filter-links li a,
 .nav-tree li a,
 .wedding-head,
-.font-primary,
 .entry-link span,
 .entry blockquote p,
 .more-link,
@@ -45,5 +44,7 @@ label,
 .before-heading,
 .wedding-head .first-name span,
 .wedding-head .last-name span,
-.font-secondary { font-family: 'Poppins', sans-serif !important; }
+.font-secondary { font-family: 'Roboto', sans-serif !important; }
+
+.font-primary { font-family: 'Roboto Slab', serif !important; }
 
