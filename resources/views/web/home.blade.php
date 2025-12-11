@@ -31,9 +31,9 @@ $setting = \App\Helpers\Helpers::setting();
 					<div class="row col-mb-50">
 						<div class="col-sm-12 col-lg-12">
 							<div class="fbox-plain">
-								<div class="fbox-content">
-									<h3 style="font-size:30px;" data-animate="backInLeft" data-delay="100">Profil</h3>
-									<p data-animate="backInLeft" data-delay="200">{!! $profile->text !!}</p>
+								<div class="fbox-content" data-animate="backInLeft" data-delay="100">
+									<h3 style="font-size:30px;">Profil</h3>
+									<p>{!! $profile->text !!}</p>
 								</div>
 							</div>
 						</div>
@@ -125,7 +125,7 @@ $setting = \App\Helpers\Helpers::setting();
 						<center>Unit Kerja</center>
 					</h2>
 
-					<div class="owl-carousel image-carousel carousel-widget flip-card-wrapper clearfix" data-margin="20" data-nav="true" data-pagi="false" data-items-xs="2" data-items-sm="2" data-items-md="2" data-items-lg="4" data-items-xl="4" data-autoplay="5000" data-speed="1000" data-loop="true" style="overflow: visible;">
+					<div class="owl-carousel image-carousel carousel-widget flip-card-wrapper clearfix"  data-animate="fadeInUp" data-delay="100" data-margin="20" data-nav="true" data-pagi="false" data-items-xs="2" data-items-sm="2" data-items-md="2" data-items-lg="4" data-items-xl="4" data-autoplay="5000" data-speed="1000" data-loop="true" style="overflow: visible;">
 
 						@foreach($work_unit as $i => $v)
 						<div class="flip-card text-center">
@@ -203,7 +203,7 @@ $setting = \App\Helpers\Helpers::setting();
 									@endforeach
 
 									<div class="col-12 form-group mb-0" data-animate="heartBeat" data-delay="100">
-										<center><a href="{{ url('page-social') }}" class="button button-rounded w-1 nott ls0 m-0" style="padding: 3px 22px;">Lihat Berita Lainnya</a></center>
+										<center><a href="{{ url('page-social') }}" class="button button-rounded w-1 nott ls0 m-0" style="padding: 3px 22px;">Lihat Selengkapnya</a></center>
 									</div>
 								</div>
 							</div>
@@ -227,6 +227,7 @@ $setting = \App\Helpers\Helpers::setting();
 										<div class="news-card" data-animate="fadeInUp" data-delay="{{$i+1}}00">
 											<div class="news-img">
 												<img src="{{ asset('storage/upload/news/'.$v->cover) }}" alt="">
+												<div class="entry-categories category-fixed"><a href="#" style="background: {{ $v->theme_color }}">{{ $v->work_unit?->name }}</a></div>
 											</div>
 
 											<div class="news-body">
@@ -248,7 +249,7 @@ $setting = \App\Helpers\Helpers::setting();
 									@endforeach
 
 									<div class="col-12 form-group mb-0" data-animate="heartBeat" data-delay="100">
-										<center><a href="{{ url('page-news') }}" class="button button-rounded w-1 nott ls0 m-0" style="padding: 3px 22px;">Lihat Berita Lainnya</a></center>
+										<center><a href="{{ url('page-news') }}" class="button button-rounded w-1 nott ls0 m-0" style="padding: 3px 22px;">Lihat Selengkapnya</a></center>
 									</div>
 								</div>
 							</div>
@@ -281,7 +282,7 @@ $setting = \App\Helpers\Helpers::setting();
 							</div>
 						</div>
 
-						<div class="widget clearfix">
+						{{--<div class="widget clearfix">
 							<h4 class="mb-2 ls1 text-uppercase fw-bold" data-animate="fadeInUp" data-delay="100">Informasi</h4>
 							<div class="line line-xs line-market" data-animate="fadeInUp" data-delay="100"></div>
 							<div class="oc-item" data-animate="fadeInUp" data-delay="400">
@@ -326,7 +327,7 @@ $setting = \App\Helpers\Helpers::setting();
 									</div>
 								</div>
 							</div>
-						</div>
+						</div>--}}
 
 						<div class="widget clearfix">
 							<h4 class="mb-2 ls1 text-uppercase fw-bold" data-animate="fadeInUp" data-delay="100" style="color:#f44336">Youtube</h4>

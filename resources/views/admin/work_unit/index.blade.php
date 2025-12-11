@@ -84,6 +84,8 @@
             var action = document.getElementById('action').innerText;
             var id_work_unit = $('#id_work_unit').val();
             var name = $('#name').val();
+            var web_url = $('#web_url').val();
+            var theme_color = $('#theme_color').val();
             var spmb_status = $('#spmb_status').val();
             var spmb_url = $('#spmb_url').val();
             var spmb_requirement = $('#spmb_requirement').val();
@@ -92,6 +94,8 @@
             var formData = new FormData();
             formData.append('id', id_work_unit);
             formData.append('name', name); 
+            formData.append('web_url', web_url); 
+            formData.append('theme_color', theme_color); 
             formData.append('spmb_status', spmb_status); 
             formData.append('spmb_url', spmb_url);
             formData.append('spmb_requirement', spmb_requirement);
@@ -192,6 +196,8 @@
             success: function (response) {
                 document.getElementById("id_work_unit").value = response.data.id;
                 document.getElementById("name").value = response.data.name;
+                document.getElementById("web_url").value = response.data.web_url;
+                document.getElementById("theme_color").value = response.data.theme_color;
                 // document.getElementById("spmb_status").value = response.data.spmb_status;
                 // document.getElementById("spmb_url").value = response.data.spmb_url;
                 // CKEDITOR.instances['spmb_requirement'].setData(response.data.spmb_requirement);

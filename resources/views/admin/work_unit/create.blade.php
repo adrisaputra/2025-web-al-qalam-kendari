@@ -26,6 +26,18 @@
                             <div id="name-error" class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
 
+                        <div class="fv-row mb-7">
+                            <label class="fw-bold fs-6 mb-2">{{ __('URL Website') }}</label>
+                           <input type="text" class="form-control" placeholder="URL Website" name="web_url" id="web_url" />
+                            <div id="web_url-error" class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+
+                        <div class="fv-row mb-7">
+                            <label class="fw-bold fs-6 mb-2">{{ __('Warna Tema') }}</label>
+                            <input type="color" class="form-control" placeholder="Warna Tema" name="theme_color" id="theme_color" />
+                            <div id="theme_color-error" class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+
                         {{--<div class="fv-row mb-7">
                             <label class="fw-bold fs-6 mb-2">{{ __('Apakah Unit Kerja Melakukan SPMB ? ') }}</label>
                             <div class="row">

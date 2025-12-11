@@ -1,0 +1,14 @@
+.card {
+	background: linear-gradient(135deg, #ffffffff, #ffffffff);
+	padding: 20px;
+	border-radius: 12px;
+	box-shadow: 0 4px 6px rgb(177 27 27 / 32%);
+	transition: transform 0.3s, box-shadow 0.3s;
+	text-align: left;
+}
+
+.card-body {
+	margin-top: 0.5rem;
+	margin-bottom: 0px;
+	color: #585858ff;
+}

@@ -46,6 +46,17 @@ Route::get('/refresh-captcha', function () {
 
 
 Route::get('/', [WebController::class, 'index']);
+Route::get('/page-news', [WebController::class, 'news']);
+Route::get('/page-news-list', [WebController::class, 'news_list']);
+Route::get('/page-news-detail', [WebController::class, 'news_detail']);
+Route::get('/page-article', [WebController::class, 'article']);
+Route::get('/page-article-list', [WebController::class, 'article_list']);
+Route::get('/page-article-detail', [WebController::class, 'article_detail']);
+Route::get('/page-album', [WebController::class, 'album']);
+Route::get('/page-album-list', [WebController::class, 'album_list']);
+Route::get('/page-video', [WebController::class, 'video']);
+Route::get('/page-video-list', [WebController::class, 'video_list']);
+
 Route::get('/page-spmb', [WebController::class, 'spmb']);
 Route::get('/page-spmb-detail/{work_unit}', [WebController::class, 'spmb_detail']);
 

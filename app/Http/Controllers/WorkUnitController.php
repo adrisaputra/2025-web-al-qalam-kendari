@@ -62,6 +62,8 @@ class WorkUnitController extends Controller
 
             $attributes = [
                 'name' => 'Nama Unit Kerja',
+                'web_url' => 'URL Web',
+                'theme_color' => 'Warna Tema',
                 // 'spmb_url' => 'URL Pendaftaran SPMB',
                 // 'spmb_requirement' => 'persyaratan Pendaftaran SPMB',
                 'image' => 'Gambar',
@@ -70,6 +72,8 @@ class WorkUnitController extends Controller
             if($action==="Simpan"){
                 $rules = [
                     'name' => 'required|string|max:255',
+                    'web_url' => 'nullable|string|max:255',
+                    'theme_color' => 'nullable|string|max:255',
                     // 'spmb_url' => 'nullable|string|max:255',
                     // 'spmb_requirement' => 'nullable|string',
                     'image' => 'image|mimes:jpg,png,jpeg|max:2000'
@@ -77,6 +81,8 @@ class WorkUnitController extends Controller
             } else {
                 $rules = [
                     'name' => 'required|string|max:255',
+                    'web_url' => 'nullable|string|max:255',
+                    'theme_color' => 'nullable|string|max:255',
                     // 'spmb_url' => 'nullable|string|max:255',
                     // 'spmb_requirement' => 'nullable|string',
                     'image' => 'image|mimes:jpg,png,jpeg|max:2000'
@@ -128,6 +134,8 @@ class WorkUnitController extends Controller
     {
         if ($request->ajax()) {
             $work_unit->name = $request->name;
+            $work_unit->web_url = $request->web_url;
+            $work_unit->theme_color = $request->theme_color;
             // $work_unit->spmb_status = $request->spmb_status;
 
             // if($request->spmb_status == 'Y'){

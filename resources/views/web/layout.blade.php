@@ -29,6 +29,9 @@ $work_unit = \App\Helpers\Helpers::work_unit();
 	<link rel="stylesheet" href="{{ asset('frontend/css/font-icons.css') }}" type="text/css" />
 	<link rel="stylesheet" href="{{ asset('frontend/css/animate.css') }}" type="text/css" />
 	<link rel="stylesheet" href="{{ asset('frontend/css/magnific-popup.css') }}" type="text/css" />
+	
+	<link rel="stylesheet" href="{{ asset('frontend/app.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('frontend/add.css') }}" type="text/css" />
 
 	<!-- Bootstrap Select CSS -->
 	<link rel="stylesheet" href="{{ asset('frontend/css/components/bs-select.css') }}" type="text/css" />
@@ -123,9 +126,24 @@ $work_unit = \App\Helpers\Helpers::work_unit();
 	.pagination .page-link {
 		box-shadow: none !important;
 	}
+
+	/* Responsive tweaks for small screen but still vertical */
+	@media (max-width: 600px) {
+		.floatmenu__wrap ul li a {
+			width: 50px;
+			height: 50px;
+			margin-bottom: 5px;
+		}
+
+		.floatmenu__wrap ul li p {
+			font-size: 10px;
+		}
+	}
+
 </style>
 
 <body class="stretched side-push-panel">
+
 
 	<!-- Document Wrapper
 	============================================= -->
@@ -133,6 +151,19 @@ $work_unit = \App\Helpers\Helpers::work_unit();
 
 		<!-- Header
 		============================================= -->
+		
+		<div class="bdgcontent">
+			<div class="floatmenu" style="width: 100px;bottom: -15px;">
+				<div class="row col-md-12 col-lg-12">
+						<div class="floatmenu__wrap">
+							<ul>
+								<li><center><a href="https://wa.me/{{ $setting->phone }}" rel="nofollow" target="_blank" ><img src="{{ asset('storage/menu/icons8-whatsapp-100.png')}}" alt="img"></a></li>
+							</ul>
+						</div>
+				</div>
+			</div>
+		</div>
+		
 		<header id="header" class="header-size-sm" data-sticky-shrink="false">
 
 			<div id="header-wrap">
@@ -189,7 +220,7 @@ $work_unit = \App\Helpers\Helpers::work_unit();
 									<ul class="sub-menu-container">
 										@foreach($work_unit as $v)
 										<li class="menu-item">
-											<a class="menu-link" href="{{ $v->url }}">
+											<a class="menu-link" href="{{ $v->web_url }}" target="_blank">
 												<div>{{ $v->name }}</div>
 											</a>
 										</li>
@@ -203,7 +234,7 @@ $work_unit = \App\Helpers\Helpers::work_unit();
 										<li class="menu-item"><a class="menu-link" href="{{ url('/page-news') }}">
 												<div>Berita</div>
 											</a></li>
-										<li class="menu-item"><a class="menu-link" href="{{ url('/page-announcement') }}">
+										<li class="menu-item"><a class="menu-link" href="{{ url('/page-article') }}">
 												<div>Artikel</div>
 											</a></li>
 									</ul>

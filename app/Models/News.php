@@ -15,17 +15,22 @@ class News extends Model
         'text',
         'file',
         'count_view',
+        'work_unit_id',
         'user_id',
     ];
+
+    public function work_unit(){
+        return $this->belongsTo('App\Models\WorkUnit');
+    }
 
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
 
     ## Relation
-    public function viewer()
+    public function news_viewer()
     {
-        return $this->hasMany('App\Models\Viewer');
+        return $this->hasMany('App\Models\NewsViewer');
     }
 
 }
