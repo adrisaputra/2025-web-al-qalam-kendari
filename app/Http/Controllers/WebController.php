@@ -10,6 +10,7 @@ use App\Models\NewsViewer;
 use App\Models\Profile;
 use App\Models\Slider;
 use App\Models\Social;
+use App\Models\Structure;
 use App\Models\Video;
 use App\Models\WorkUnit;
 use Illuminate\Http\Request;
@@ -36,6 +37,69 @@ class WebController extends Controller
         $slider = Slider::orderBy('id', 'DESC')->first();
         $title = "Berita";
         return view('web.news', compact('title', 'slider'));
+    }
+
+    public function profile()
+    {
+        $slider = Slider::orderBy('id', 'DESC')->first();
+
+        if (request()->is('page-profile')) {
+            $title = "Profil";
+        } elseif (request()->is('page-vision')) {
+            $title = "Visi";
+        } elseif (request()->is('page-mission')) {
+            $title = "Misi";
+        } elseif (request()->is('page-structure')) {
+            $title = "Struktur Organisasi Desa";
+        } elseif (request()->is('page-structure1')) {
+            $title = "Dewan Pembina";
+        } elseif (request()->is('page-structure2')) {
+            $title = "Dewan Pengawas";
+        } elseif (request()->is('page-structure3')) {
+            $title = "Pengurus Yayasan";
+        } 
+        return view('web.profile', compact('title', 'slider'));
+    }
+
+    public function profile_list($menu)
+    {
+        if ($menu=='profile') {
+            $title = "Profil";
+            $profile = Profile::where('menu', 'profile')->first();
+            return view('web.profile_list', compact('title','profile'));
+        } elseif ($menu=='vision') {
+            $title = "Visi";
+            $profile = Profile::where('menu', 'vision')->first();
+            return view('web.profile_list', compact('title','profile'));
+        } elseif ($menu=='mission') {
+            $title = "Misi";
+            $profile = Profile::where('menu', 'mission')->first();
+            return view('web.profile_list', compact('title','profile'));
+        } elseif ($menu=='structure') {
+            $title = "Struktur";
+            $profile = Profile::where('menu', 'structure')->first();
+            return view('web.profile_list', compact('title','profile'));
+        } elseif ($menu=='structure1') {
+            $title = "Dewan Pembina";
+            $structure = Structure::where('category', 'Dewan Pembina')->get();
+            return view('web.structure_list', compact('title','structure'));
+        }  elseif ($menu=='structure2') {
+            $title = "Dewan Pengawas";
+            $structure = Structure::where('category', 'Dewan Pengawas')->get();
+            return view('web.structure_list', compact('title','structure'));
+        }  elseif ($menu=='structure3') {
+            $title = "Pengurus Yayasan";
+            $structure = Structure::where('category', 'Pengurus Yayasan')->get();
+            return view('web.structure_list', compact('title','structure'));
+        } 
+
+    }
+
+    public function get_structure(Request $request, Structure $structure)
+    {
+        if($request->ajax()){
+            return response()->json(['success' => true, 'structure' => $structure ]);
+        }
     }
 
     public function news_list(Request $request)

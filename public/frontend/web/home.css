@@ -62,7 +62,7 @@
 }
 
 .news-img {
-    position: relative;
+	position: relative;
 }
 
 /* Image */
@@ -114,10 +114,12 @@
 }
 
 .entry-categories.category-fixed {
-    position: absolute;
-    bottom: 10px;     /* jarak dari bawah gambar */
-    left: 10px;       /* jarak dari kiri gambar */
-    z-index: 10;
+	position: absolute;
+	bottom: 10px;
+	/* jarak dari bawah gambar */
+	left: 10px;
+	/* jarak dari kiri gambar */
+	z-index: 10;
 }
 
 .entry-categories.category-fixed a {
@@ -127,4 +129,81 @@
 	border-radius: 4px;
 	font-size: 10px;
 	font-weight: bold;
+}
+
+.slider-url {
+    color: #ffffff;
+    background-color: #FF5722;
+    border: 2px solid #FF5722;
+    padding: 0.75rem 2rem;
+    font-size: 18px;
+    border-radius: 15px 0px 15px 0px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s ease;
+    display: inline-block;
+}
+
+/* Efek glow + membesar saat hover */
+.slider-url:hover {
+    transform: scale(1.07);
+    box-shadow: 0 8px 20px rgba(255, 87, 34, 0.5);
+    color: #ffffff;
+}
+
+/* Efek shine berjalan */
+.slider-url::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255,255,255,0.4);
+    transform: skewX(-20deg);
+    transition: 0.6s;
+}
+
+/* Shine muncul saat hover */
+.slider-url:hover::before {
+    left: 130%;
+}
+
+
+.read-more {
+    color: #ffffff;
+    background-color: #FF5722;
+    border: 2px solid #FF5722;
+    padding: 0.5rem 1rem;
+    font-size: 16px;
+    border-radius: 15px 0px 15px 0px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s ease;
+    display: inline-block;
+}
+
+/* Efek glow + membesar saat hover */
+.read-more:hover {
+    transform: scale(1.07);
+    box-shadow: 0 8px 20px rgba(255, 87, 34, 0.5);
+    color: #ffffff;
+}
+
+/* Efek shine berjalan */
+.read-more::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255,255,255,0.4);
+    transform: skewX(-20deg);
+    transition: 0.6s;
+}
+
+/* Shine muncul saat hover */
+.read-more:hover::before {
+    left: 130%;
 }

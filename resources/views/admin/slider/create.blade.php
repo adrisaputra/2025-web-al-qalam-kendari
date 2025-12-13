@@ -21,12 +21,6 @@
                         <input type="hidden" class="form-control" name="category" id="category" value="{{ Request::segment(1) }}"/>
                         
                         <div class="fv-row mb-7">
-                            <label class="required fw-bold fs-6 mb-2">{{ __('Nama Slider') }}</label>
-                            <input type="text" class="form-control" placeholder="Nama Slider" name="title" id="title"/>
-                            <div id="title-error" class="fv-plugins-message-container invalid-feedback"></div>
-                        </div>
-
-                        <div class="fv-row mb-7">
                             <label class="required fw-bold fs-6 mb-2">{{ __('Gambar') }}</label>
                             <input type="file" name="image" id="image" class="form-control">
                             <span class="text-red" id="show_image"></span>
@@ -34,8 +28,19 @@
                         </div>
                         
                         <div class="fv-row mb-7">
-                            <label class="fw-bold fs-6 mb-2">{{ __('URL') }}</label>
-                            <input type="text" class="form-control" placeholder="URL" name="url" id="url"/>
+                            <label class="fw-bold fs-6 mb-2">{{ __('URL ') }}</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Teks Tombol URL" name="url_name" id="url_name"/>
+                                    <div id="url_name-error" class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="URL" name="url" id="url"/>
+                                    <div id="url-error" class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+
+                            </div>
                         </div>
 
                     </div>

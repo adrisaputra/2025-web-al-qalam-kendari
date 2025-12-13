@@ -172,7 +172,7 @@ $setting = \App\Helpers\Helpers::setting();
 									</a>
 								</div>
 								
-								<div data-kt-menu-trigger="click" class="menu-item @if(in_array(Request::segment(1), array('profile','vision','mission','structure','facility'))) here show @endif menu-accordion">
+								<div data-kt-menu-trigger="click" class="menu-item @if(in_array(Request::segment(1), array('profile','vision','mission','structure','structure1','structure2','structure3','facility'))) here show @endif menu-accordion">
 									<span class="menu-link">
 										<span class="menu-icon" style="margin-right: 15px">
 											<img src="{{ asset('storage/menu/icons8-home-100.png') }}" width="30" height="30" >
@@ -211,6 +211,30 @@ $setting = \App\Helpers\Helpers::setting();
 													<span class="bullet bullet-dot"></span>
 												</span>
 												<span class="menu-title">Struktur Organisasi</span>
+											</a>
+										</div>
+										<div class="menu-item">
+											<a class="menu-link @if(Request::segment(1)=='structure1') active @endif" href="{{ url('structure1') }}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">Dewan Pembina</span>
+											</a>
+										</div>
+										<div class="menu-item">
+											<a class="menu-link @if(Request::segment(1)=='structure2') active @endif" href="{{ url('structure2') }}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">Dewan Pengawas</span>
+											</a>
+										</div>
+										<div class="menu-item">
+											<a class="menu-link @if(Request::segment(1)=='structure3') active @endif" href="{{ url('structure3') }}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">Pengurus Yayasan</span>
 											</a>
 										</div>
 									</div>

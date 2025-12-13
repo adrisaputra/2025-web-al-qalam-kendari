@@ -65,17 +65,31 @@ class SliderController extends Controller
         if ($request->ajax()) {
 
             $attributes = [
-                'image'  => 'Gambar'
+                'image'  => 'Gambar',
+                'url_name'  => 'Teks Tombol URL',
+                'url'  => 'URL'
             ];
 
             if ($action === "Simpan") {
                 $rules = [
                     'image' => 'required|image|mimes:jpg,png,jpeg'
                 ];
+                
+                if($request->url || $request->url_name){
+                    $rules['url'] = 'required|string';
+                    $rules['url_name'] = 'required|string';
+                }
+
             } else {
                 $rules = [
-                    'image' => 'image|mimes:jpg,png,jpeg'
+                    'image' => 'image|mimes:jpg,png,jpeg',
                 ];
+                
+                if($request->url || $request->url_name){
+                    $rules['url'] = 'required|string';
+                    $rules['url_name'] = 'required|string';
+                }
+                
             }
 
             $request->validate($rules, [], $attributes);
@@ -91,12 +105,7 @@ class SliderController extends Controller
             $slider = new Slider();
             $slider->fill($request->all());
             $slider->work_unit_id = Auth::user()->work_unit_id;
-
-            if($request->category=='slider'){
-                $slider->category = 'Web';
-            } else {
-                $slider->category = 'SPMB';
-            }
+            $slider->category = 'Web';
 
             ## Ubah width dan Height
             if ($request->hasFile('image')) {
@@ -148,6 +157,7 @@ class SliderController extends Controller
         if ($request->ajax()) {
 
             $slider->title = $request->title;
+            $slider->url_name = $request->url_name;
             $slider->url = $request->url;
             
             if ($slider->image && $request->file('image') != "") {

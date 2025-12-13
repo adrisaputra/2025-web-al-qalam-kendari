@@ -17,6 +17,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\SpmbController;
+use App\Http\Controllers\StructureController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\WebController;
@@ -46,6 +47,17 @@ Route::get('/refresh-captcha', function () {
 
 
 Route::get('/', [WebController::class, 'index']);
+Route::get('/page-profile', [WebController::class, 'profile']);
+Route::get('/page-vision', [WebController::class, 'profile']);
+Route::get('/page-mission', [WebController::class, 'profile']);
+Route::get('/page-structure', [WebController::class, 'profile']);
+Route::get('/page-structure1', [WebController::class, 'profile']);
+Route::get('/page-structure2', [WebController::class, 'profile']);
+Route::get('/page-structure3', [WebController::class, 'profile']);
+Route::get('/page-get-structure/{structure}', [WebController::class, 'get_structure']);
+Route::get('/page-profile-list/{menu}', [WebController::class, 'profile_list']);
+Route::get('/page-vision', [WebController::class, 'profile']);
+Route::get('/page-mission', [WebController::class, 'profile']);
 Route::get('/page-news', [WebController::class, 'news']);
 Route::get('/page-news-list', [WebController::class, 'news_list']);
 Route::get('/page-news-detail', [WebController::class, 'news_detail']);
@@ -85,6 +97,36 @@ Route::middleware(['role:Administrator,Operator'])->group(function () {
     Route::get('/structure', [ProfileController::class, 'index']);
     Route::post('/profile/validate', [ProfileController::class, 'validation']);
     Route::put('/profile/edit/{profile}', [ProfileController::class, 'update']);
+    
+    ## Structure 1
+    Route::get('/structure1', [StructureController::class, 'index'])->name('structure.index');
+    Route::get('/structure1/list/{url}', [StructureController::class, 'get_structure_index'])->name('structure.list');
+    Route::post('structure1/upload_image',[StructureController::class, 'upload_image'])->name('upload_structure');
+    Route::post('/structure1/store', [StructureController::class, 'store']);
+    Route::post('/structure1/validate/{action}', [StructureController::class, 'validate']);
+    Route::get('/structure1/edit/{structure}', [StructureController::class, 'edit']);
+    Route::put('/structure1/edit/{structure}', [StructureController::class, 'update']);
+    Route::get('/structure1/delete/{structure}',[StructureController::class, 'delete']);
+    
+    ## Structure 2
+    Route::get('/structure2', [StructureController::class, 'index'])->name('structure.index');
+    Route::get('/structure2/list/{url}', [StructureController::class, 'get_structure_index'])->name('structure.list');
+    Route::post('structure2/upload_image',[StructureController::class, 'upload_image'])->name('upload_structure');
+    Route::post('/structure2/store', [StructureController::class, 'store']);
+    Route::post('/structure2/validate/{action}', [StructureController::class, 'validate']);
+    Route::get('/structure2/edit/{structure}', [StructureController::class, 'edit']);
+    Route::put('/structure2/edit/{structure}', [StructureController::class, 'update']);
+    Route::get('/structure2/delete/{structure}',[StructureController::class, 'delete']);
+    
+    ## Structure 3
+    Route::get('/structure3', [StructureController::class, 'index'])->name('structure.index');
+    Route::get('/structure3/list/{url}', [StructureController::class, 'get_structure_index'])->name('structure.list');
+    Route::post('structure3/upload_image',[StructureController::class, 'upload_image'])->name('upload_structure');
+    Route::post('/structure3/store', [StructureController::class, 'store']);
+    Route::post('/structure3/validate/{action}', [StructureController::class, 'validate']);
+    Route::get('/structure3/edit/{structure}', [StructureController::class, 'edit']);
+    Route::put('/structure3/edit/{structure}', [StructureController::class, 'update']);
+    Route::get('/structure3/delete/{structure}',[StructureController::class, 'delete']);
     
     ## Facility
     Route::get('/facility', [FacilityController::class, 'index'])->name('facility.index');

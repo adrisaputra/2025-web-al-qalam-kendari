@@ -12,6 +12,13 @@ $setting = \App\Helpers\Helpers::setting();
 			@foreach($slider as $i => $v)
 			<div class="swiper-slide">
 				<div class="swiper-slide-bg" style="background-image: url({{ asset('storage/upload/slider/'.$v->image) }}); background-size: cover; background-color: rgba(0, 0, 0, 0.4);background-blend-mode: darken;"></div>
+				<div class="carousel-caption d-block">
+					@if($v->url)
+					<p style="text-align:start;">
+						<center><a href="{{ $v->url }}" target="_blank" class="slider-url">{{ $v->url_name }}</a></center>
+					</p>
+					@endif
+				</div>
 			</div>
 			@endforeach
 		</div>
@@ -34,6 +41,7 @@ $setting = \App\Helpers\Helpers::setting();
 								<div class="fbox-content" data-animate="backInLeft" data-delay="100">
 									<h3 style="font-size:30px;">Profil</h3>
 									<p>{!! $profile->text !!}</p>
+									<a href="{{ url('page-profile') }}"class="read-more">Selengkapnya</a>
 								</div>
 							</div>
 						</div>
@@ -42,7 +50,7 @@ $setting = \App\Helpers\Helpers::setting();
 				<div class="col-sm-4 col-lg-4">
 					<div class="row" style="--bs-gutter-x: 1.5rem;">
 						<div class="col-sm-12 col-lg-12" data-animate="backInLeft" data-delay="100">
-							<a href="{{ url('page-demographics') }}">
+							<a href="{{ url('page-vision') }}">
 								<div class="feature-box fbox-plain">
 									{{--<div class="fbox-icon">
 									<center><img src="{{ asset('storage/menu/icons8-graph-100.png') }}" style="width:60px;height:60px"></center>
@@ -55,7 +63,7 @@ $setting = \App\Helpers\Helpers::setting();
 					</div>
 
 					<div class="col-sm-12 col-lg-12" data-animate="backInRight" data-delay="200">
-						<a href="{{ url('page-facility') }}">
+						<a href="{{ url('page-mission') }}">
 							<div class="feature-box fbox-plain">
 								<div class="fbox-content">
 									<h3 class="fw-normal" style="color: #ffffff;">Misi</h3>
@@ -65,7 +73,7 @@ $setting = \App\Helpers\Helpers::setting();
 					</div>
 
 					<div class="col-sm-12 col-lg-12" data-animate="backInLeft" data-delay="300">
-						<a href="{{ url('page-potential') }}">
+						<a href="{{ url('page-structure') }}">
 							<div class="feature-box fbox-plain">
 								<div class="fbox-content">
 									<h3 class="fw-normal" style="color: #ffffff;">Struktur Organisasi</h3>
@@ -75,7 +83,7 @@ $setting = \App\Helpers\Helpers::setting();
 					</div>
 
 					<div class="col-sm-12 col-lg-12" data-animate="backInRight" data-delay="100">
-						<a href="{{ url('page-realization') }}">
+						<a href="{{ url('page-structure1') }}">
 							<div class="feature-box fbox-plain">
 								<div class="fbox-content">
 									<h3 class="fw-normal" style="color: #ffffff;">Dewan Pembina</h3>
@@ -85,7 +93,7 @@ $setting = \App\Helpers\Helpers::setting();
 					</div>
 
 					<div class="col-sm-12 col-lg-12" data-animate="backInLeft" data-delay="200">
-						<a href="{{ url('page-realization') }}">
+						<a href="{{ url('page-structure2') }}">
 							<div class="feature-box fbox-plain">
 								<div class="fbox-content">
 									<h3 class="fw-normal" style="color: #ffffff;">Dewan Pengawas</h3>
@@ -95,7 +103,7 @@ $setting = \App\Helpers\Helpers::setting();
 					</div>
 
 					<div class="col-sm-12 col-lg-12" data-animate="backInRight" data-delay="300">
-						<a href="{{ url('page-realization') }}">
+						<a href="{{ url('page-structure3') }}">
 							<div class="feature-box fbox-plain">
 								<div class="fbox-content">
 									<h3 class="fw-normal" style="color: #ffffff;">Pengurus Yayasan</h3>
