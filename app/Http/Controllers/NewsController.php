@@ -91,6 +91,7 @@ class NewsController extends Controller
             $news = new News();
             $news->fill($request->all());
             $news->slug = Str::slug($request->title);
+            $news->work_unit_id = Auth::user()->work_unit_id;
             $news->user_id = Auth::user()->id;
 
             ## Ubah width dan Height

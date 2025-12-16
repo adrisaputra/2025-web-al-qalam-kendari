@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class VideoController extends Controller
@@ -22,7 +23,7 @@ class VideoController extends Controller
         if ($request->ajax()) {
             $counter = 1;
 
-            $video = Video::limit(10);
+            $video = Video::where('work_unit_id',Auth::user()->work_unit_id)->limit(10);
 
             return DataTables::of($video)
             ->addIndexColumn()
@@ -68,6 +69,7 @@ class VideoController extends Controller
         if ($request->ajax()) {
             $video = New Video();
             $video->fill($request->all());
+            $video->work_unit_id= Auth::user()->work_unit_id;
             $video->save();
             
             activity()->log('Create Data Video');

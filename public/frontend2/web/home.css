@@ -1,0 +1,209 @@
+.feature-box {
+	background: linear-gradient(135deg, #ff9800, #F44336);
+	padding: 20px;
+	border-radius: 12px;
+
+	/* Transition halus */
+	transition: all 10s ease;
+}
+
+.feature-box:hover {
+	transform: translateY(-5px);
+	background: linear-gradient(135deg, #F44336, #ff9800);
+}
+
+/* Wrapper */
+.news-section {
+	padding: 40px 0;
+	background: #f7f7f7;
+	font-family: Arial, sans-serif;
+}
+
+.news-title {
+	font-size: 32px;
+	font-weight: 700;
+	color: #e53935;
+	text-align: center;
+}
+
+.news-subtitle {
+	text-align: center;
+	margin-top: 5px;
+	color: #555;
+}
+
+/* Grid */
+.news-grid {
+	margin-top: 40px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: 25px;
+}
+
+.news-grid {
+	margin-top: 40px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: 25px;
+}
+
+/* Card */
+.news-card {
+	background: #fff;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+	position: relative;
+	transition: 0.3s;
+}
+
+.news-card:hover {
+	transform: translateY(-5px);
+}
+
+.news-img {
+	position: relative;
+}
+
+/* Image */
+.news-img img {
+	width: 100%;
+	height: 230px;
+	object-fit: cover;
+}
+
+/* Body */
+.news-body {
+	padding: 20px;
+}
+
+.news-heading {
+	font-size: 18px;
+	font-weight: 700;
+	min-height: 60px;
+	color: #333;
+}
+
+.news-desc {
+	margin-top: 10px;
+	color: #777;
+	font-size: 14px;
+}
+
+/* Meta */
+.news-meta {
+	margin-top: 15px;
+	font-size: 13px;
+	color: #444;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* Date badge */
+.news-date {
+	background: linear-gradient(135deg, #FF5722, #FFC107);
+
+	color: #fff;
+	padding: 7px 15px;
+	position: absolute;
+	right: -4px;
+	bottom: 25px;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.entry-categories.category-fixed {
+	position: absolute;
+	bottom: 10px;
+	/* jarak dari bawah gambar */
+	left: 10px;
+	/* jarak dari kiri gambar */
+	z-index: 10;
+}
+
+.entry-categories.category-fixed a {
+	padding: 5px 12px;
+	background: #fc6600;
+	color: #fff;
+	border-radius: 4px;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.slider-url {
+    color: #ffffff;
+    background-color: #FF5722;
+    border: 2px solid #FF5722;
+    padding: 0.75rem 2rem;
+    font-size: 18px;
+    border-radius: 15px 0px 15px 0px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s ease;
+    display: inline-block;
+}
+
+/* Efek glow + membesar saat hover */
+.slider-url:hover {
+    transform: scale(1.07);
+    box-shadow: 0 8px 20px rgba(255, 87, 34, 0.5);
+    color: #ffffff;
+}
+
+/* Efek shine berjalan */
+.slider-url::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255,255,255,0.4);
+    transform: skewX(-20deg);
+    transition: 0.6s;
+}
+
+/* Shine muncul saat hover */
+.slider-url:hover::before {
+    left: 130%;
+}
+
+
+.read-more {
+    color: #ffffff;
+    background-color: #FF5722;
+    border: 2px solid #FF5722;
+    padding: 0.5rem 1rem;
+    font-size: 16px;
+    border-radius: 15px 0px 15px 0px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s ease;
+    display: inline-block;
+}
+
+/* Efek glow + membesar saat hover */
+.read-more:hover {
+    transform: scale(1.07);
+    box-shadow: 0 8px 20px rgba(255, 87, 34, 0.5);
+    color: #ffffff;
+}
+
+/* Efek shine berjalan */
+.read-more::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255,255,255,0.4);
+    transform: skewX(-20deg);
+    transition: 0.6s;
+}
+
+/* Shine muncul saat hover */
+.read-more:hover::before {
+    left: 130%;
+}

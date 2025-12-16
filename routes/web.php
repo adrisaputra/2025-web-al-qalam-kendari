@@ -195,24 +195,24 @@ Route::middleware(['role:Administrator,Operator'])->group(function () {
     Route::get('/spmb/delete/{work_unit}',[SpmbController::class, 'delete']);
     
     ## Achievement (Academic)
-    Route::get('/academic', [AchievementController::class, 'index'])->name('achievement.index');
-    Route::get('/academic/list/{url}', [AchievementController::class, 'get_achievement_index'])->name('achievement.list');
-    Route::post('academic/upload_image',[AchievementController::class, 'upload_image'])->name('upload_achievement');
-    Route::post('/academic/store', [AchievementController::class, 'store']);
-    Route::post('/academic/validate/{action}', [AchievementController::class, 'validate']);
-    Route::get('/academic/edit/{achievement}', [AchievementController::class, 'edit']);
-    Route::put('/academic/edit/{achievement}', [AchievementController::class, 'update']);
-    Route::get('/academic/delete/{achievement}',[AchievementController::class, 'delete']);
+    Route::get('/academic', [AcademicController::class, 'index'])->name('academic.index');
+    Route::get('/academic/list/{url}', [AcademicController::class, 'get_academic_index'])->name('academic.list');
+    Route::post('academic/upload_image',[AcademicController::class, 'upload_image'])->name('upload_academic');
+    Route::post('/academic/store', [AcademicController::class, 'store']);
+    Route::post('/academic/validate/{action}', [AcademicController::class, 'validate']);
+    Route::get('/academic/edit/{achievement}', [AcademicController::class, 'edit']);
+    Route::put('/academic/edit/{achievement}', [AcademicController::class, 'update']);
+    Route::get('/academic/delete/{achievement}',[AcademicController::class, 'delete']);
     
     ## Achievement (Non Academic)
-    Route::get('/non_academic', [AchievementController::class, 'index'])->name('achievement.index');
-    Route::get('/non_academic/list/{url}', [AchievementController::class, 'get_achievement_index'])->name('achievement.list');
-    Route::post('non_academic/upload_image',[AchievementController::class, 'upload_image'])->name('upload_achievement');
-    Route::post('/non_academic/store', [AchievementController::class, 'store']);
-    Route::post('/non_academic/validate/{action}', [AchievementController::class, 'validate']);
-    Route::get('/non_academic/edit/{achievement}', [AchievementController::class, 'edit']);
-    Route::put('/non_academic/edit/{achievement}', [AchievementController::class, 'update']);
-    Route::get('/non_academic/delete/{achievement}',[AchievementController::class, 'delete']);
+    Route::get('/non_academic', [AcademicController::class, 'index'])->name('academic.index');
+    Route::get('/non_academic/list/{url}', [AcademicController::class, 'get_academic_index'])->name('academic.list');
+    Route::post('non_academic/upload_image',[AcademicController::class, 'upload_image'])->name('upload_academic');
+    Route::post('/non_academic/store', [AcademicController::class, 'store']);
+    Route::post('/non_academic/validate/{action}', [AcademicController::class, 'validate']);
+    Route::get('/non_academic/edit/{achievement}', [AcademicController::class, 'edit']);
+    Route::put('/non_academic/edit/{achievement}', [AcademicController::class, 'update']);
+    Route::get('/non_academic/delete/{achievement}',[AcademicController::class, 'delete']);
       
     ## Program (Featured Program)
     Route::get('/featured_program', [ProgramController::class, 'index'])->name('program.index');

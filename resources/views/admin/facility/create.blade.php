@@ -20,8 +20,8 @@
                         <input type="hidden" class="form-control" id="id_facility"/>
                         
                         <div class="fv-row mb-7">
-                            <label class="required fw-bold fs-6 mb-2">{{ __('Nama Fasilitas Desa') }}</label>
-                            <input type="text" class="form-control" placeholder="Nama Fasilitas Desa" name="name" id="name" />
+                            <label class="required fw-bold fs-6 mb-2">{{ __('Nama Fasilitas') }}</label>
+                            <input type="text" class="form-control" placeholder="Nama Fasilitas" name="name" id="name" />
                             <div id="name-error" class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
 

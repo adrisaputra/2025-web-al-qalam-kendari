@@ -9,6 +9,7 @@ class Album extends Model
 {
     use HasFactory;
 	protected $fillable =[
+        'work_unit_id',
         'title',
         'text',
         'cover'

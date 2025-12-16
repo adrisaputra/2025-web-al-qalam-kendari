@@ -24,12 +24,15 @@ class AgendaController extends Controller
         if ($request->ajax()) {
             $counter = 1;
 
-            $agenda = Agenda::limit(10);
+            $agenda = Agenda::where('work_unit_id',Auth::user()->work_unit_id)->limit(10);
 
             return DataTables::of($agenda)
             ->addIndexColumn()
             ->addColumn('number', function () use (&$counter) {
                 return $counter++;
+            })
+            ->addColumn('display_title', function ($v){
+                return $v->title;
             })
             ->addColumn('display_date', function ($v){
                 return Helpers::date_indo_full($v->date);
@@ -102,6 +105,7 @@ class AgendaController extends Controller
         if ($request->ajax()) {
             $agenda = New Agenda();
             $agenda->fill($request->all());
+            $agenda->work_unit_id= Auth::user()->work_unit_id;
             $agenda->user_id = Auth::user()->id;
             $agenda->save();
             

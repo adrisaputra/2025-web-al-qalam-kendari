@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Facility;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
@@ -14,7 +15,7 @@ class FacilityController extends Controller
     ## Show Data
     public function index()
     {
-        $title = "Fasilitas Desa";
+        $title = "Fasilitas";
 		return view('admin.facility.index',compact('title'));
     }
 
@@ -24,8 +25,8 @@ class FacilityController extends Controller
 
         if ($request->ajax()) {
             $counter = 1;
-
-            $facility = Facility::limit(10);
+            
+            $facility = Facility::where('work_unit_id',Auth::user()->work_unit_id)->limit(10);
 
             return DataTables::of($facility)
             ->addIndexColumn()
@@ -60,7 +61,7 @@ class FacilityController extends Controller
         if ($request->ajax()) {
 
             $attributes = [
-                'name'  => 'Nama Fasilitas Desa',
+                'name'  => 'Nama Fasilitas',
                 'image'  => 'Gambar'
             ];
 
@@ -88,6 +89,7 @@ class FacilityController extends Controller
         if ($request->ajax()) {
             $facility = New Facility();
             $facility->fill($request->all());
+            $facility->work_unit_id = Auth::user()->work_unit_id;
 
             ## Ubah width dan Height
             if ($request->hasFile('image')) {

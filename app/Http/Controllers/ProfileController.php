@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -11,7 +12,7 @@ class ProfileController extends Controller
     ## Show Data
     public function index(Request $request)
     {
-        $profile = Profile::where('menu',  $request->segment(1))->first();
+        $profile = Profile::where('work_unit_id',Auth::user()->work_unit_id)->where('menu',  $request->segment(1))->first();
         $title =  $profile->title;
         return view('admin.profile.index', compact('title', 'profile'));
     }

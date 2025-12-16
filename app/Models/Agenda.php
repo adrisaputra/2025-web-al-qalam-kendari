@@ -9,8 +9,11 @@ class Agenda extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'date',
+        'work_unit_id',
         'time',
+        'date',
+        'start',
+        'end',
         'desc',
         'place',
         'responsible_person',
