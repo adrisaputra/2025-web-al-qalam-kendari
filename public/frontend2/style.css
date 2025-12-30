@@ -3672,7 +3672,7 @@ body:not(.top-search-open) .top-search-parent #primary-menu-trigger {
 	padding: 11px 5px;
 	font-size: 0.75rem;
 	font-weight: 400;
-	color: #666;
+	/* color: #666; */
 	letter-spacing: 0;
 	font-family: 'Outfit', sans-serif;
 }

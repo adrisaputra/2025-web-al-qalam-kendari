@@ -127,14 +127,14 @@ abstract class AbstractPaginator implements CanBeEscapedWhenCastToString, Htmlab
      *
      * @var string
      */
-    public static $defaultView = 'pagination::tailwind';
+    public static $defaultView = 'pagination::bootstrap-5';
 
     /**
      * The default "simple" pagination view.
      *
      * @var string
      */
-    public static $defaultSimpleView = 'pagination::simple-tailwind';
+    public static $defaultSimpleView = 'pagination::simple-bootstrap-5';
 
     /**
      * Determine if the given value is a valid page number.

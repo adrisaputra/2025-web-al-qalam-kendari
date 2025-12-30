@@ -107,7 +107,7 @@ class WebController extends Controller
         $search =  $request->search;
         $news = News::where(function ($query) use ($search) {
             $query->where('title', 'LIKE', '%' . $search . '%');
-        })->latest()->paginate(6)->onEachSide(1);
+        })->latest()->paginate(1)->onEachSide(1);
 
         if ($request->ajax()) {
             return view('web.news_list', compact('news'))->render();
