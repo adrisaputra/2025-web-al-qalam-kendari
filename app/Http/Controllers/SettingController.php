@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,7 @@ class SettingController extends Controller
     public function index()
     {
         $title = "Pengaturan";
-        $setting = Setting::where('work_unit_id',Auth::user()->work_unit_id)->first();
+        $setting = Setting::where('work_unit_id',Helpers::get_work_unit()->id)->first();
 		return view('admin.setting.index',compact('title','setting'));
     }
 

@@ -28,7 +28,7 @@ class NewsController extends Controller
         if ($request->ajax()) {
             $counter = 1;
 
-            $news = News::limit(10);
+            $news = News::where('work_unit_id',Helpers::get_work_unit()->id)->limit(10);
 
             return DataTables::of($news)
                 ->addIndexColumn()
@@ -91,7 +91,7 @@ class NewsController extends Controller
             $news = new News();
             $news->fill($request->all());
             $news->slug = Str::slug($request->title);
-            $news->work_unit_id = Auth::user()->work_unit_id;
+            $news->work_unit_id = Helpers::get_work_unit()->id;
             $news->user_id = Auth::user()->id;
 
             ## Ubah width dan Height

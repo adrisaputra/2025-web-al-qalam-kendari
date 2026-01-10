@@ -1,32 +1,32 @@
 /* Wrapper */
-.news-section {
+.munaqosah-section {
 	padding: 40px 0;
 	background: #f7f7f7;
 	font-family: Arial, sans-serif;
 }
 
-.news-title {
+.munaqosah-title {
 	font-size: 32px;
 	font-weight: 700;
 	color: #e53935;
 	text-align: center;
 }
 
-.news-subtitle {
+.munaqosah-subtitle {
 	text-align: center;
 	margin-top: 5px;
 	color: #555;
 }
 
 /* Grid */
-.news-grid {
+.munaqosah-grid {
 	margin-top: 40px;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 	gap: 25px;
 }
 
-.news-grid {
+.munaqosah-grid {
 	margin-top: 40px;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -34,7 +34,7 @@
 }
 
 /* Card */
-.news-card {
+.munaqosah-card {
 	background: #fff;
 	border-radius: 12px;
 	overflow: hidden;
@@ -43,41 +43,41 @@
 	transition: 0.3s;
 }
 
-.news-card:hover {
+.munaqosah-card:hover {
 	transform: translateY(-5px);
 }
 
-.news-img {
+.munaqosah-img {
     position: relative;
 }
 
 /* Image */
-.news-img img {
+.munaqosah-img img {
 	width: 100%;
 	height: 230px;
 	object-fit: cover;
 }
 
 /* Body */
-.news-body {
+.munaqosah-body {
 	padding: 20px;
 }
 
-.news-heading {
+.munaqosah-heading {
 	font-size: 18px;
 	font-weight: 700;
 	min-height: 60px;
 	color: #333;
 }
 
-.news-desc {
+.munaqosah-desc {
 	margin-top: 10px;
 	color: #777;
 	font-size: 14px;
 }
 
 /* Meta */
-.news-meta {
+.munaqosah-meta {
 	margin-top: 15px;
 	font-size: 13px;
 	color: #444;
@@ -86,7 +86,7 @@
 }
 
 /* Date badge */
-.news-date {
+.munaqosah-date {
 	background: linear-gradient(135deg, var(--theme-color), var(--theme-color-light));
 
 	color: #fff;
@@ -100,14 +100,14 @@
 }
 
 /* SEARCH BOX */
-.news-search-box {
+.munaqosah-search-box {
 	margin: 20px 0 5px 0;
 	display: flex;
 	justify-content: flex-end;
 }
 
 /* SEARCH BOX */
-.news-search-box {
+.munaqosah-search-box {
 	margin: 20px 0 5px 0;
 	display: flex;
 	justify-content: flex-end;
@@ -154,7 +154,7 @@
 
 /* Mobile: tetap center */
 @media(max-width: 576px) {
-	.news-search-box {
+	.munaqosah-search-box {
 		justify-content: center;
 	}
 }

@@ -15,6 +15,12 @@ class Helpers
         return $work_unit;
     }
     
+    public static function get_work_unit()
+    {
+        $work_unit = WorkUnit::where('id',1)->first();
+        return $work_unit;
+    }
+    
     public static function setting()
     {
         // if(Auth::user()){

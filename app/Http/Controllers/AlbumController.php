@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Models\Album;
 use App\Models\Photo;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class AlbumController extends Controller
         if ($request->ajax()) {
             $counter = 1;
 
-            $album = Album::where('work_unit_id',Auth::user()->work_unit_id)->limit(10);
+            $album = Album::where('work_unit_id',Helpers::get_work_unit()->id)->limit(10);
 
             return DataTables::of($album)
             ->addIndexColumn()
@@ -92,7 +93,7 @@ class AlbumController extends Controller
         if ($request->ajax()) {
             $album = New Album();
             $album->fill($request->all());
-            $album->work_unit_id= Auth::user()->work_unit_id;
+            $album->work_unit_id= Helpers::get_work_unit()->id;
 
             if ($request->hasFile('cover')) {
                 $file = $request->file('cover');

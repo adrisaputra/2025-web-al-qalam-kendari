@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Models\Log;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -22,7 +23,10 @@ class LogController extends Controller
         if ($request->ajax()) {
             $counter = 1;
 
-            $log = Log::limit(10);
+            $log = Log::with('user')->whereHas('user', function ($q) {
+                $q->where('work_unit_id', Helpers::get_work_unit()->id);
+            })->limit(10);
+
 
             return DataTables::of($log)
             ->addIndexColumn()

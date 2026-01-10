@@ -4,7 +4,7 @@
 	<div class="news-card" data-animate="fadeInUp" data-delay="{{$i+1}}00">
 		<div class="news-img">
 			<img src="{{ asset('storage/upload/news/'.$v->cover) }}" alt="">
-			<div class="entry-categories category-fixed"><a href="#" style="background: {{ $v->theme_color }}">{{ $v->work_unit?->name }}</a></div>
+			<div class="entry-categories category-fixed"><a href="#" style="background: {{ $v->work_unit?->theme_color }}">{{ $v->work_unit?->name }}</a></div>
 		</div>
 
 		<div class="news-body">

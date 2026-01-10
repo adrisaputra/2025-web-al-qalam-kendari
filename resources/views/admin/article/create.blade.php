@@ -34,6 +34,7 @@
                         <div class="fv-row mb-7">
                             <label class="required fw-bold fs-6 mb-2">{{ __('Cover') }}</label>
                             <input type="file" name="cover" id="cover" class="form-control">
+                            <b class="text-muted" style="font-size: 12px;">Ukuran gambar 1600 x 1068 pixel. Ukuran gambar tidak boleh lebih dari 5 Mb (jpg,jpeg,png)</b>
                             <span class="text-red" id="show_cover"></span>
                             <div id="cover-error" class="fv-plugins-message-container invalid-feedback"></div>
                         </div>

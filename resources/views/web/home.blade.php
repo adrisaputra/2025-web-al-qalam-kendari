@@ -343,7 +343,7 @@ $setting = \App\Helpers\Helpers::setting();
 							<div class="row">
 								@foreach($video as $x)
 								@php $a = str_replace("watch?v=","embed/",$x->url); @endphp
-								<div class="col-sm-12 col-lg-12" data-animate="fadeInUp" data-delay="300" style="border-radius: 15px;">
+								<div class="col-sm-12 col-lg-12" data-animate="fadeInUp" data-delay="300" style="border-radius: 15px;padding-bottom:10px">
 									<iframe width="200px" height="150px" align="center" src="{{ $a }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 								</div>
 								@endforeach

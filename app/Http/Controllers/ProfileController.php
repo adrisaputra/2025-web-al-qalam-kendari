@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,7 @@ class ProfileController extends Controller
     ## Show Data
     public function index(Request $request)
     {
-        $profile = Profile::where('work_unit_id',Auth::user()->work_unit_id)->where('menu',  $request->segment(1))->first();
+        $profile = Profile::where('work_unit_id',Helpers::get_work_unit()->id)->where('menu',  $request->segment(1))->first();
         $title =  $profile->title;
         return view('admin.profile.index', compact('title', 'profile'));
     }

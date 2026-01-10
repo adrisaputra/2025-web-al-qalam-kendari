@@ -3,6 +3,7 @@ $setting = \App\Helpers\Helpers::setting();
 @endphp
 @extends('web.layout')
 @section('content')
+<link rel="stylesheet" href="{{ asset('frontend/web/news_detail.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ asset('frontend/web/article_detail.css') }}" type="text/css" />
 
 <!-- Page Title
@@ -61,7 +62,7 @@ $setting = \App\Helpers\Helpers::setting();
 										{!! $article->text !!}
 									</p>
 
-									<div class="article-meta">
+									{{--<div class="article-meta">
 										<span>
 											Bagikan: 
 											<img src="{{ asset('storage/menu/icons8-facebook-100.png') }}" width="40px">
@@ -69,7 +70,7 @@ $setting = \App\Helpers\Helpers::setting();
 											<img src="{{ asset('storage/menu/icons8-twitter-squared-100.png') }}" width="40px">
 											<img src="{{ asset('storage/menu/icons8-whatsapp-100.png') }}" width="40px">
 										</span>
-									</div>
+									</div>--}}
 								</div>
 
 							</div>
@@ -80,11 +81,11 @@ $setting = \App\Helpers\Helpers::setting();
 									<h4 class="mb-2 ls1 text-uppercase fw-bold" data-animate="fadeInUp" data-delay="100" style="color:#f44336">Berita Terbaru</h4>
 									<div class="line line-xs line-home" data-animate="fadeInUp" data-delay="100"></div>
 
-									@foreach($get_article as $i => $v)
-									<div class="article-item">
-										<img src="{{ asset('storage/upload/article/'.$v->cover) }}" alt="">
-										<div class="article-info">
-											<a href="{{ url('page-article-detail?q='.$v->slug) }}" class="judul">{{ $v->title}}</a>
+									@foreach($get_news as $i => $v)
+									<div class="news-item">
+										<img src="{{ asset('storage/upload/news/'.$v->cover) }}" alt="">
+										<div class="news-info">
+											<a href="{{ url('page-news-detail?q='.$v->slug) }}" class="judul">{{ $v->title}}</a>
 											<div class="meta2">
 												<!-- <span>📅 23 September 2025</span> -->
 												<span>⏱️ {{ \App\Helpers\Helpers::month_indo_full($v->created_at) }}</span>

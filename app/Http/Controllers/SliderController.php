@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,7 @@ class SliderController extends Controller
                 $query = $query->where('category','SPMB');
             }
 
-            $slider =$query->limit(10);
+            $slider =$query->where('work_unit_id',Helpers::get_work_unit()->id)->limit(10);
 
             return DataTables::of($slider)
                 ->addIndexColumn()
@@ -104,8 +105,13 @@ class SliderController extends Controller
         if ($request->ajax()) {
             $slider = new Slider();
             $slider->fill($request->all());
-            $slider->work_unit_id = Auth::user()->work_unit_id;
-            $slider->category = 'Web';
+            $slider->work_unit_id = Helpers::get_work_unit()->id;
+
+            if($request->category=='slider'){
+                $slider->category = 'Web';
+            } else {
+                $slider->category = 'SPMB';
+            }
 
             ## Ubah width dan Height
             if ($request->hasFile('image')) {

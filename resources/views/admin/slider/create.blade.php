@@ -23,10 +23,12 @@
                         <div class="fv-row mb-7">
                             <label class="required fw-bold fs-6 mb-2">{{ __('Gambar') }}</label>
                             <input type="file" name="image" id="image" class="form-control">
+                            <b class="text-muted" style="font-size: 12px;">Ukuran gambar 1938 x 1028 pixel. Format gambar yang diperbolehkan: .jpg, .jpeg, .png</b>
                             <span class="text-red" id="show_image"></span>
                             <div id="image-error" class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
                         
+                        @if(Request::segment(1) == 'slider')
                         <div class="fv-row mb-7">
                             <label class="fw-bold fs-6 mb-2">{{ __('URL ') }}</label>
                             <div class="row">
@@ -42,6 +44,7 @@
 
                             </div>
                         </div>
+                        @endif
 
                     </div>
                     <div class="text-center pt-15">

@@ -22,6 +22,7 @@
                             <input type="hidden" class="form-control" id="id_photo"/>
                             <input type="hidden" class="form-control" value="{{ $album->id }}" name="album_id" id="album_id"/>
                             <input type="file" name="image" id="image" class="form-control">
+                            <b class="text-muted" style="font-size: 12px;">Ukuran gambar 1600 x 1068 pixel. Ukuran gambar tidak boleh lebih dari 3 Mb (jpg,jpeg,png)</b>
                             <span class="text-red" id="show_image"></span>
                             <div id="image-error" class="fv-plugins-message-container invalid-feedback"></div>
                         </div>

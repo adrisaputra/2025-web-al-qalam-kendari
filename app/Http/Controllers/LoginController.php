@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,7 @@ class LoginController extends Controller
             'captcha' => 'required|captcha'
         ]);
 
-        $user = User::where('name', $request->name)->first();
+        $user = User::where('name', $request->name)->where('work_unit_id', Helpers::get_work_unit()->id)->first();
 
         if ($user && Hash::check($request->password, $user->password) && $user->status == "Active") {
             if (Auth::attempt(['name' => $request->name, 'password' => $request->password])) {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Models\Album;
 use App\Models\Article;
 use App\Models\ArticleViewer;
@@ -27,22 +28,19 @@ class WebController extends Controller
         $social = Social::orderBy('id', 'DESC')->limit(4)->get();
         $news = News::orderBy('id', 'DESC')->limit(4)->get();
         $article = Article::orderBy('id', 'DESC')->limit(4)->get();
-        $video = Video::orderBy('id', 'DESC')->limit(2)->get();
-        $album = Album::orderBy('id', 'DESC')->limit(10)->get();
+        $video = Video::where('work_unit_id',Helpers::get_work_unit()->id)->orderBy('id', 'DESC')->limit(2)->get();
+        $album = Album::where('work_unit_id',Helpers::get_work_unit()->id)->orderBy('id', 'DESC')->limit(10)->get();
         return view('web.home', compact('slider','profile','work_unit','social','news', 'article', 'video', 'album'));
     }
 
     public function news()
     {
-        $slider = Slider::orderBy('id', 'DESC')->first();
         $title = "Berita";
-        return view('web.news', compact('title', 'slider'));
+        return view('web.news', compact('title'));
     }
 
     public function profile()
     {
-        $slider = Slider::orderBy('id', 'DESC')->first();
-
         if (request()->is('page-profile')) {
             $title = "Profil";
         } elseif (request()->is('page-vision')) {
@@ -58,7 +56,7 @@ class WebController extends Controller
         } elseif (request()->is('page-structure3')) {
             $title = "Pengurus Yayasan";
         } 
-        return view('web.profile', compact('title', 'slider'));
+        return view('web.profile', compact('title'));
     }
 
     public function profile_list($menu)
@@ -107,7 +105,7 @@ class WebController extends Controller
         $search =  $request->search;
         $news = News::where(function ($query) use ($search) {
             $query->where('title', 'LIKE', '%' . $search . '%');
-        })->latest()->paginate(1)->onEachSide(1);
+        })->latest()->paginate(6)->onEachSide(1);
 
         if ($request->ajax()) {
             return view('web.news_list', compact('news'))->render();
@@ -121,13 +119,12 @@ class WebController extends Controller
 
     public function news_detail(Request $request)
     {
-        $slider = Slider::orderBy('id', 'DESC')->first();
         $title = "Berita";
 
         $news = $request->get('q');
         $news = News::where('slug', $news)->first();
         $get_news = News::where('id', '!=', $news->id)->limit(5)->get();
-        $get_article = Article::where('id', '!=', $news->id)->limit(5)->get();
+        $get_article = Article::limit(5)->get();
 
         $ipAddress = $request->ip();
         $viewer = NewsViewer::where('news_id', $news->id)
@@ -143,14 +140,13 @@ class WebController extends Controller
             $news->save();
         }
 
-        return view('web.news_detail', compact('title', 'slider', 'news', 'get_news','get_article'));
+        return view('web.news_detail', compact('title', 'news', 'get_news','get_article'));
     }
 
     public function article()
     {
-        $slider = Slider::orderBy('id', 'DESC')->first();
         $title = "Artikel";
-        return view('web.article', compact('title', 'slider'));
+        return view('web.article', compact('title'));
     }
 
     public function article_list(Request $request)
@@ -172,12 +168,11 @@ class WebController extends Controller
 
     public function article_detail(Request $request)
     {
-        $slider = Slider::orderBy('id', 'DESC')->first();
         $title = "Artikel";
 
         $article = $request->get('q');
         $article = Article::where('slug', $article)->first();
-        $get_article = Article::where('id', '!=', $article->id)->limit(5)->get();
+        $get_news = News::limit(5)->get();
         $get_article = Article::where('id', '!=', $article->id)->limit(5)->get();
 
         $ipAddress = $request->ip();
@@ -194,56 +189,51 @@ class WebController extends Controller
             $article->save();
         }
 
-        return view('web.article_detail', compact('title', 'slider', 'article', 'get_article','get_article'));
+        return view('web.article_detail', compact('title', 'article', 'get_news','get_article'));
     }
 
     public function album()
     {
-        $slider = Slider::orderBy('id', 'DESC')->first();
         $title = "Galeri Foto";
-        return view('web.album', compact('title', 'slider'));
+        return view('web.album', compact('title'));
     }
 
     public function album_list(Request $request)
     {
-        $slider = Slider::orderBy('id', 'DESC')->first();
         $title = "Galeri Foto";
 
-        $album = Album::latest()->paginate(6)->onEachSide(1);
+        $album = Album::where('work_unit_id',Helpers::get_work_unit()->id)->latest()->paginate(6)->onEachSide(1);
 
         if ($request->ajax()) {
             return view('web.album_list', compact('album'))->render();
         }
 
-        return view('web.album', compact('title', 'slider', 'album'));
+        return view('web.album', compact('title', 'album'));
     }
 
     public function video()
     {
-        $slider = Slider::orderBy('id', 'DESC')->first();
         $title = "Galeri Video";
-        $video = Video::orderBy('id', 'DESC')->paginate(6)->onEachSide(1);
-        return view('web.video', compact('title', 'slider','video'));
+        return view('web.video', compact('title'));
     }
 
     public function video_list(Request $request)
     {
-        $slider = Slider::orderBy('id', 'DESC')->first();
         $title = "Galeri Video";
 
-        $video = Video::latest()->paginate(6)->onEachSide(1);
+        $video = Video::where('work_unit_id',Helpers::get_work_unit()->id)->latest()->paginate(6)->onEachSide(1);
 
         if ($request->ajax()) {
             return view('web.video_list', compact('video'))->render();
         }
 
-        return view('web.video', compact('title', 'slider', 'video'));
+        return view('web.video', compact('title', 'video'));
     }
 
     public function spmb()
     {
-        $slider = Slider::get();
-        $work_unit = WorkUnit::where('spmb_status','Y')->get();
+        $slider = Slider::where('category', 'SPMB')->get();
+        $work_unit = WorkUnit::where('spmb_status','O')->get();
         return view('web.spmb', compact('slider','work_unit'));
     }
 

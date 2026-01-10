@@ -64,11 +64,11 @@ class PhotoController extends Controller
 
             if($action==="Simpan"){
                 $request->validate([
-                    'image' => 'required|image|mimes:jpg,png,jpeg|max:1000'
+                    'image' => 'required|image|mimes:jpg,png,jpeg|max:3000'
                 ]);
             } else {
                 $request->validate([
-                    'image' => 'required|image|mimes:jpg,png,jpeg|max:1000'
+                    'image' => 'required|image|mimes:jpg,png,jpeg|max:3000'
                 ]);
             }
     

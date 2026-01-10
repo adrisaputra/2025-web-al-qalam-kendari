@@ -1,18 +1,13 @@
 <?php
 
-use App\Http\Controllers\AcademicController;
-use App\Http\Controllers\AchievementController;
-use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SocialController;
@@ -128,15 +123,6 @@ Route::middleware(['role:Administrator,Operator'])->group(function () {
     Route::put('/structure3/edit/{structure}', [StructureController::class, 'update']);
     Route::get('/structure3/delete/{structure}',[StructureController::class, 'delete']);
     
-    ## Facility
-    Route::get('/facility', [FacilityController::class, 'index'])->name('facility.index');
-    Route::get('/facility/list', [FacilityController::class, 'get_facility_index'])->name('facility.list');
-    Route::post('/facility/store', [FacilityController::class, 'store']);
-    Route::post('/facility/validate/{action}', [FacilityController::class, 'validate']);
-    Route::get('/facility/edit/{facility}', [FacilityController::class, 'edit']);
-    Route::put('/facility/edit/{facility}', [FacilityController::class, 'update']);
-    Route::get('/facility/delete/{facility}',[FacilityController::class, 'delete']);
-
     ## News
     Route::get('/news', [NewsController::class, 'index'])->name('news.index');
     Route::get('/news/list', [NewsController::class, 'get_news_index'])->name('news.list');
@@ -167,15 +153,6 @@ Route::middleware(['role:Administrator,Operator'])->group(function () {
     Route::put('/social/edit/{social}', [SocialController::class, 'update']);
     Route::get('/social/delete/{social}',[SocialController::class, 'delete']);
 
-    ## Agenda
-    Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda.index');
-    Route::get('/agenda/list', [AgendaController::class, 'get_agenda_index'])->name('agenda.list');
-    Route::post('/agenda/store', [AgendaController::class, 'store']);
-    Route::post('/agenda/validate/{action}', [AgendaController::class, 'validate']);
-    Route::get('/agenda/edit/{agenda}', [AgendaController::class, 'edit']);
-    Route::put('/agenda/edit/{agenda}', [AgendaController::class, 'update']);
-    Route::get('/agenda/delete/{agenda}',[AgendaController::class, 'delete']);
-
     ## Slider SPMB
     Route::get('/slider_spmb', [SliderController::class, 'index'])->name('sliders.index');
     Route::get('/slider_spmb/list/{url}', [SliderController::class, 'get_slider_index'])->name('sliders.list');
@@ -194,66 +171,6 @@ Route::middleware(['role:Administrator,Operator'])->group(function () {
     Route::put('/spmb/edit/{work_unit}', [SpmbController::class, 'update']);
     Route::get('/spmb/delete/{work_unit}',[SpmbController::class, 'delete']);
     
-    ## Achievement (Academic)
-    Route::get('/academic', [AcademicController::class, 'index'])->name('academic.index');
-    Route::get('/academic/list/{url}', [AcademicController::class, 'get_academic_index'])->name('academic.list');
-    Route::post('academic/upload_image',[AcademicController::class, 'upload_image'])->name('upload_academic');
-    Route::post('/academic/store', [AcademicController::class, 'store']);
-    Route::post('/academic/validate/{action}', [AcademicController::class, 'validate']);
-    Route::get('/academic/edit/{achievement}', [AcademicController::class, 'edit']);
-    Route::put('/academic/edit/{achievement}', [AcademicController::class, 'update']);
-    Route::get('/academic/delete/{achievement}',[AcademicController::class, 'delete']);
-    
-    ## Achievement (Non Academic)
-    Route::get('/non_academic', [AcademicController::class, 'index'])->name('academic.index');
-    Route::get('/non_academic/list/{url}', [AcademicController::class, 'get_academic_index'])->name('academic.list');
-    Route::post('non_academic/upload_image',[AcademicController::class, 'upload_image'])->name('upload_academic');
-    Route::post('/non_academic/store', [AcademicController::class, 'store']);
-    Route::post('/non_academic/validate/{action}', [AcademicController::class, 'validate']);
-    Route::get('/non_academic/edit/{achievement}', [AcademicController::class, 'edit']);
-    Route::put('/non_academic/edit/{achievement}', [AcademicController::class, 'update']);
-    Route::get('/non_academic/delete/{achievement}',[AcademicController::class, 'delete']);
-      
-    ## Program (Featured Program)
-    Route::get('/featured_program', [ProgramController::class, 'index'])->name('program.index');
-    Route::get('/featured_program/list/{url}', [ProgramController::class, 'get_program_index'])->name('program.list');
-    Route::post('featured_program/upload_image',[ProgramController::class, 'upload_image'])->name('upload_program');
-    Route::post('/featured_program/store', [ProgramController::class, 'store']);
-    Route::post('/featured_program/validate/{action}', [ProgramController::class, 'validate']);
-    Route::get('/featured_program/edit/{program}', [ProgramController::class, 'edit']);
-    Route::put('/featured_program/edit/{program}', [ProgramController::class, 'update']);
-    Route::get('/featured_program/delete/{program}',[ProgramController::class, 'delete']);
-      
-    ## Program (Extracurricular)
-    Route::get('/extracurricular', [ProgramController::class, 'index'])->name('achievement.index');
-    Route::get('/extracurricular/list/{url}', [ProgramController::class, 'get_achievement_index'])->name('achievement.list');
-    Route::post('extracurricular/upload_image',[ProgramController::class, 'upload_image'])->name('upload_achievement');
-    Route::post('/extracurricular/store', [ProgramController::class, 'store']);
-    Route::post('/extracurricular/validate/{action}', [ProgramController::class, 'validate']);
-    Route::get('/extracurricular/edit/{achievement}', [ProgramController::class, 'edit']);
-    Route::put('/extracurricular/edit/{achievement}', [ProgramController::class, 'update']);
-    Route::get('/extracurricular/delete/{achievement}',[ProgramController::class, 'delete']);
-    
-    ## Academic (Curriculum)
-    Route::get('/curriculum', [AcademicController::class, 'index'])->name('academic.index');
-    Route::get('/curriculum/list/{url}', [AcademicController::class, 'get_academic_index'])->name('academic.list');
-    Route::post('curriculum/upload_image',[AcademicController::class, 'upload_image'])->name('upload_academic');
-    Route::post('/curriculum/store', [AcademicController::class, 'store']);
-    Route::post('/curriculum/validate/{action}', [AcademicController::class, 'validate']);
-    Route::get('/curriculum/edit/{academic}', [AcademicController::class, 'edit']);
-    Route::put('/curriculum/edit/{academic}', [AcademicController::class, 'update']);
-    Route::get('/curriculum/delete/{academic}',[AcademicController::class, 'delete']);
-      
-    ## Academic (Academic Calendar)
-    Route::get('/academic_calendar', [AcademicController::class, 'index'])->name('academic.index');
-    Route::get('/academic_calendar/list/{url}', [AcademicController::class, 'get_academic_index'])->name('academic.list');
-    Route::post('academic_calendar/upload_image',[AcademicController::class, 'upload_image'])->name('upload_academic');
-    Route::post('/academic_calendar/store', [AcademicController::class, 'store']);
-    Route::post('/academic_calendar/validate/{action}', [AcademicController::class, 'validate']);
-    Route::get('/academic_calendar/edit/{academic}', [AcademicController::class, 'edit']);
-    Route::put('/academic_calendar/edit/{academic}', [AcademicController::class, 'update']);
-    Route::get('/academic_calendar/delete/{academic}',[AcademicController::class, 'delete']);
-      
     ## Album
     Route::get('/album', [AlbumController::class, 'index'])->name('album.index');
     Route::get('/album/list', [AlbumController::class, 'get_album_index'])->name('album.list');

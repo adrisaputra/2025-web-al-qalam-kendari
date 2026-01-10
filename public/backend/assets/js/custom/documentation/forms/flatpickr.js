@@ -5,7 +5,22 @@ var KTFormsFlatpickrDemos = {
 			dateFormat: "Y-m-d",
 			allowInput: true
 		});
-
+		$("#start").flatpickr({
+			enableTime: true,
+			dateFormat: "Y-m-d H:i",   // format untuk database
+			altInput: true,
+			altFormat: "Y-m-d H:i",   // format tampilan user
+			time_24hr: true,          // jam 24
+			defaultDate: new Date()   // otomatis isi tanggal & jam sekarang
+		});
+		$("#end").flatpickr({
+			enableTime: true,
+			dateFormat: "Y-m-d H:i",   // format untuk database
+			altInput: true,
+			altFormat: "Y-m-d H:i",   // format tampilan user
+			time_24hr: true,          // jam 24
+			defaultDate: new Date()   // otomatis isi tanggal & jam sekarang
+		});
 		$("#kt_datepicker_5").flatpickr({
 			onReady: function() {
 				this.jumpToDate("2025-01")

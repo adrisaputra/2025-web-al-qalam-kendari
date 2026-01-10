@@ -4,6 +4,7 @@ $setting = \App\Helpers\Helpers::setting();
 @extends('web.layout')
 @section('content')
 <link rel="stylesheet" href="{{ asset('frontend/web/news_detail.css') }}" type="text/css" />
+<link rel="stylesheet" href="{{ asset('frontend/web/article_detail.css') }}" type="text/css" />
 
 <!-- Page Title
 ============================================= -->
@@ -54,14 +55,14 @@ $setting = \App\Helpers\Helpers::setting();
 									</div>
 									<div class="news-img">
 										<img src="{{ asset('storage/upload/news/'.$news->cover) }}" alt="">
-										<div class="entry-categories category-fixed"><a href="#" style="background: {{ $news->theme_color }}">{{ $news->work_unit?->name }}</a></div>
+										<div class="entry-categories category-fixed"><a href="#" style="background: {{ $news->work_unit?->theme_color }}">{{ $news->work_unit?->name }}</a></div>
 									</div>
 
 									<p class="news-desc" style="color: #000000;">
 										{!! $news->text !!}
 									</p>
 
-									<div class="news-meta">
+									{{--<div class="news-meta">
 										<span>
 											Bagikan: 
 											<img src="{{ asset('storage/menu/icons8-facebook-100.png') }}" width="40px">
@@ -69,7 +70,7 @@ $setting = \App\Helpers\Helpers::setting();
 											<img src="{{ asset('storage/menu/icons8-twitter-squared-100.png') }}" width="40px">
 											<img src="{{ asset('storage/menu/icons8-whatsapp-100.png') }}" width="40px">
 										</span>
-									</div>
+									</div>--}}
 								</div>
 
 							</div>

@@ -17,7 +17,7 @@ class ArticleController extends Controller
     ## Show Data
     public function index()
     {
-        $title = "Berita";
+        $title = "Artikel";
         return view('admin.article.index', compact('title'));
     }
 
