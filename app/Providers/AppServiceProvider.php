@@ -22,15 +22,21 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Share variable layout ke semua view
+        // View::composer('*', function ($view) {
+        //     if (Auth::check()) {
+        //         $layout = Auth::user()->work_unit_id == 1
+        //             ? 'admin.layout1'
+        //             : 'admin.layout2';
+        //     } else {
+        //         // default (misal untuk guest)
+        //         $layout = 'admin.layout1';
+        //     }
+
+        //     $view->with('layout', $layout);
+        // });
+
         View::composer('*', function ($view) {
-            if (Auth::check()) {
-                $layout = Auth::user()->work_unit_id == 1
-                    ? 'admin.layout1'
-                    : 'admin.layout2';
-            } else {
-                // default (misal untuk guest)
-                $layout = 'admin.layout1';
-            }
+            $layout = 'admin.layout';
 
             $view->with('layout', $layout);
         });

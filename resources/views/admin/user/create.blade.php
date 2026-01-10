@@ -40,7 +40,7 @@
                             <div id="group_id-error" class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
 
-                        <div class="fv-row mb-7">
+                        {{--<div class="fv-row mb-7">
                             <label class="required fw-bold fs-6 mb-2">{{ __('Unit Kerja') }}</label>
                             <select name="work_unit_id" id="work_unit_id" class="form-control">
                                 <option value="">- Pilih Unit Kerja -</option>
@@ -49,7 +49,7 @@
                                 @endforeach
                             </select>
                             <div id="work_unit_id-error" class="fv-plugins-message-container invalid-feedback"></div>
-                        </div>
+                        </div>--}}
 
                         <div class="fv-row mb-7">
                             <label class="required fw-bold fs-6 mb-2">{{ __('Password') }}</label>

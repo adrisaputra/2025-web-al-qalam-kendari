@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Models\User;
 use App\Models\WorkUnit;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class UserController extends Controller
         if ($request->ajax()) {
             $counter = 1;
 
-            $user = User::limit(10);
+            $user = User::where('work_unit_id',Helpers::get_work_unit()->id)->limit(10);
 
             return DataTables::of($user)
             ->addIndexColumn()
@@ -70,7 +71,7 @@ class UserController extends Controller
             $attributes = [
                 'name' => 'Nama User',
                 'email' => 'Email',
-                'work_unit_id' => 'Unit Kerja',
+                // 'work_unit_id' => 'Unit Kerja',
                 'group_id' => 'Grup',
                 'password' => 'Password'
             ];
@@ -81,7 +82,7 @@ class UserController extends Controller
                     $rules = [
                         'name' => 'required|string|max:255',
                         'email' => 'required|string|email|max:255|unique:users',
-                        'work_unit_id' => 'required',
+                        // 'work_unit_id' => 'required',
                         'group_id' => 'required',
                         'password' => 'required|string|min:8|confirmed'
                     ];
@@ -89,7 +90,7 @@ class UserController extends Controller
                     $rules = [
                         'name' => 'required|string|max:255',
                         'email' => 'required|string|email|max:255|unique:users',
-                        'work_unit_id' => 'required',
+                        // 'work_unit_id' => 'required',
                         'group_id' => 'required',
                         'password' => 'required|string|min:8|confirmed'
                     ];
@@ -97,7 +98,7 @@ class UserController extends Controller
                     $rules = [
                         'name' => 'required|string|max:255',
                         'email' => 'required|string|email|max:255|unique:users',
-                        'work_unit_id' => 'required',
+                        // 'work_unit_id' => 'required',
                         'group_id' => 'required',
                         'password' => 'required|string|min:8|confirmed',
                     ];
@@ -110,21 +111,21 @@ class UserController extends Controller
                     if($request->group_id == 2){
                         $rules = [
                             'name' => 'required|string|max:255',
-                            'work_unit_id' => 'required',
+                            // 'work_unit_id' => 'required',
                             'group_id' => 'required',
                             'password' => 'required|string|min:8|confirmed'
                         ];
                     } else if($request->group_id == 3){
                         $rules = [
                             'name' => 'required|string|max:255',
-                            'work_unit_id' => 'required',
+                            // 'work_unit_id' => 'required',
                             'group_id' => 'required',
                             'password' => 'required|string|min:8|confirmed'
                         ];
                     } else {
                         $rules = [
                             'name' => 'required|string|max:255',
-                            'work_unit_id' => 'required',
+                            // 'work_unit_id' => 'required',
                             'group_id' => 'required',
                             'password' => 'required|string|min:8|confirmed'
                         ];
@@ -133,19 +134,19 @@ class UserController extends Controller
                     if($request->group_id == 2){
                         $rules = [
                             'name' => 'required|string|max:255',
-                            'work_unit_id' => 'required',
+                            // 'work_unit_id' => 'required',
                             'group_id' => 'required'
                         ];
                     } else if($request->group_id == 3){
                         $rules = [
                             'name' => 'required|string|max:255',
-                            'work_unit_id' => 'required',
+                            // 'work_unit_id' => 'required',
                             'group_id' => 'required'
                         ];
                     } else {
                         $rules = [
                             'name' => 'required|string|max:255',
-                            'work_unit_id' => 'required',
+                            // 'work_unit_id' => 'required',
                             'group_id' => 'required'
                         ];
                     }
@@ -164,6 +165,7 @@ class UserController extends Controller
         if ($request->ajax()) {
             $user = New User();
             $user->fill($request->all());
+            $user->work_unit_id = Helpers::get_work_unit()->id;
             $user->status = 'Active';
             $user->save();
             
