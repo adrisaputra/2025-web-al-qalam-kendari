@@ -146,11 +146,11 @@ $setting = \App\Helpers\Helpers::setting();
 									</div>
 								</div>
 							</div>
-							<a href="{{ $v->url }}" target="_blank">
+							<a href="{{ $v->web_url }}" target="_blank">
 								<div class="flip-card-back bg-info no-after" style="background-color: #fc6600 !important;">
 									<div class="flip-card-inner">
 										<p class="text-white" style="font-size:18px">{{ $v->name }}</p>
-										<a href="{{ $v->url }}" target="_blank" class="btn btn-success pulse-button" style="background-color: #4caf50;border-color: #4caf50;">Kunjungi</a>
+										<a href="{{ $v->web_url }}" target="_blank" class="btn btn-success pulse-button" style="background-color: #4caf50;border-color: #4caf50;">Kunjungi</a>
 									</div>
 								</div>
 							</a>
@@ -235,7 +235,7 @@ $setting = \App\Helpers\Helpers::setting();
 										<div class="news-card" data-animate="fadeInUp" data-delay="{{$i+1}}00">
 											<div class="news-img">
 												<img src="{{ asset('storage/upload/news/'.$v->cover) }}" alt="">
-												<div class="entry-categories category-fixed"><a href="#" style="background: {{ $v->theme_color }}">{{ $v->work_unit?->name }}</a></div>
+												<div class="entry-categories category-fixed"><a href="#" style="background: {{ $v->work_unit?->theme_color }}">{{ $v->work_unit?->name }}</a></div>
 											</div>
 
 											<div class="news-body">

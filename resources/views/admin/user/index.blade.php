@@ -88,7 +88,7 @@
             var name = $('#name').val();
             var email = $('#email').val();
             var password = $('#password').val();
-            // var work_unit_id = $('#work_unit_id').val();
+            var work_unit_id = $('#work_unit_id').val();
             var group_id = $('#group_id').val();
             var password_confirmation = $('#password_confirmation').val();
 
@@ -98,7 +98,7 @@
             formData.append('name', name);
             formData.append('email', email);
             formData.append('password', password);
-            // formData.append('work_unit_id', work_unit_id);
+            formData.append('work_unit_id', work_unit_id);
             formData.append('group_id', group_id);
             formData.append('password_confirmation', password_confirmation);
             formData.append('_token', "{{ csrf_token() }}");
@@ -192,7 +192,7 @@
                 document.getElementById("id_user").value = response.data.id;
                 document.getElementById("name").value = response.data.name;
                 document.getElementById("email").value = response.data.email;
-                // document.getElementById("work_unit_id").value = response.data.work_unit_id;
+                document.getElementById("work_unit_id").value = response.data.work_unit_id;
                 document.getElementById("group_id").value = response.data.group_id;
                 togglePositionInput(response.data.group_id);
                 console.log(response.data.group_id);

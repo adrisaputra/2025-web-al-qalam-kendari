@@ -188,7 +188,7 @@
                 document.getElementById("spmb_url").value = response.data.spmb_url;
                 CKEDITOR.instances['spmb_requirement'].setData(response.data.spmb_requirement);
 
-                if(response.data.spmb_status === "Y"){
+                if(response.data.spmb_status === "O"){
                     document.getElementById("display_spmb_url").style.display = "block";
                     document.getElementById("display_spmb_requirement").style.display = "block";
                 } else {

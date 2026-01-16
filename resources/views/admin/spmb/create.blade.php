@@ -32,7 +32,7 @@
                                 <div class="col-md-3">
                                     <select name="spmb_status" id="spmb_status" class="form-control" onchange="displaySpmbUrl();">
                                         <option value="">- Pilih -</option>
-                                        <option value="Y">Ya</option>
+                                        <option value="O">Ya</option>
                                         <option value="N">Tidak</option>
                                     </select>
                                     <div id="spmb_status-error" class="fv-plugins-message-container invalid-feedback"></div>
@@ -67,7 +67,7 @@
         var status = document.getElementById("spmb_status").value;
         var display_spmb_url = document.getElementById("display_spmb_url");
         var display_spmb_requirement = document.getElementById("display_spmb_requirement");
-        if (status === "Y") {
+        if (status === "O") {
             display_spmb_url.style.display = "block";
             display_spmb_requirement.style.display = "block";
         } else {

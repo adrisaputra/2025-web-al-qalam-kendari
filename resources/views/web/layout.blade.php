@@ -179,7 +179,7 @@ $work_unit = \App\Helpers\Helpers::work_unit();
 						</div>
 
 						<div id="logo" class="ms-auto ms-lg-0 me-lg-auto">
-							<a href="{{ url('/') }}" class="standard-logo"><img src="{{ asset('storage/upload/setting/'.$setting->large_icon) }}" alt="Canvas Logo" style="height:50px"></a>
+							<a href="{{ url('/') }}" class="standard-logo"><img src="{{ asset('storage/upload/setting/'.$setting->large_icon) }}" alt="Canvas Logo" style="height:70px"></a>
 							<a href="{{ url('/') }}" class="retina-logo"><img src="{{ asset('storage/upload/setting/'.$setting->large_icon) }}" alt="Canvas Logo" style="height:50px"></a>
 						</div><!-- #logo end -->
 						<!-- Primary Navigation

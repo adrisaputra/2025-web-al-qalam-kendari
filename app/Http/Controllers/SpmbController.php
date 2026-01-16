@@ -86,7 +86,7 @@ class SpmbController extends Controller
             $work_unit = New WorkUnit();
             $work_unit->fill($request->all());
 
-            if($request->spmb_status == 'Y'){
+            if($request->spmb_status == 'O'){
                 $work_unit->spmb_url = $request->spmb_url;
             } else {
                 $work_unit->spmb_url = null;
@@ -115,7 +115,7 @@ class SpmbController extends Controller
             $work_unit->name = $request->name;
             $work_unit->spmb_status = $request->spmb_status;
 
-            if($request->spmb_status == 'Y'){
+            if($request->spmb_status == 'O'){
                 $work_unit->spmb_url = $request->spmb_url;
                 $work_unit->spmb_requirement = $request->spmb_requirement;
             } else {

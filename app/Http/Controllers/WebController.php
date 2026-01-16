@@ -11,6 +11,7 @@ use App\Models\NewsViewer;
 use App\Models\Profile;
 use App\Models\Slider;
 use App\Models\Social;
+use App\Models\SocialViewer;
 use App\Models\Structure;
 use App\Models\Video;
 use App\Models\WorkUnit;
@@ -190,6 +191,52 @@ class WebController extends Controller
         }
 
         return view('web.article_detail', compact('title', 'article', 'get_news','get_article'));
+    }
+
+    public function social()
+    {
+        $title = "Sosial dan Dakwah";
+        return view('web.social', compact('title'));
+    }
+
+    public function social_list(Request $request)
+    {
+        $search =  $request->search;
+        $social = Social::where(function ($query) use ($search) {
+            $query->where('title', 'LIKE', '%' . $search . '%');
+        })->latest()->paginate(6)->onEachSide(1);
+
+        if ($request->ajax()) {
+            return view('web.social_list', compact('social'))->render();
+        }
+
+        return view('web.social', compact('social'));
+    }
+
+    public function social_detail(Request $request)
+    {
+        $title = "Sosial dan Dakwah";
+
+        $social = $request->get('q');
+        $social = Social::where('slug', $social)->first();
+        $get_news = News::limit(5)->get();
+        $get_social = Social::where('id', '!=', $social->id)->limit(5)->get();
+
+        $ipAddress = $request->ip();
+        $viewer = SocialViewer::where('social_id', $social->id)
+            ->where('ip_address', $ipAddress)
+            ->first();
+
+        if (!$viewer) {
+            $social->social_viewer()->create([
+                'ip_address' => $ipAddress,
+            ]);
+
+            $social->count_view = $social->count_view + 1;
+            $social->save();
+        }
+
+        return view('web.social_detail', compact('title', 'social', 'get_news','get_social'));
     }
 
     public function album()

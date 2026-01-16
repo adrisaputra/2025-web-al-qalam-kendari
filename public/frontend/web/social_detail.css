@@ -1,0 +1,239 @@
+/* Wrapper */
+.social-section {
+	padding: 40px 0;
+	background: #f7f7f7;
+	font-family: Arial, sans-serif;
+}
+
+.social-title {
+	font-size: 32px;
+	font-weight: 700;
+	color: #e53935;
+	text-align: center;
+}
+
+.social-subtitle {
+	text-align: center;
+	margin-top: 5px;
+	color: #555;
+}
+
+/* Grid */
+.social-grid {
+	margin-top: 40px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: 25px;
+}
+
+.social-grid {
+	margin-top: 40px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: 25px;
+}
+
+/* Card */
+.social-card {
+	background: #fff;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+	position: relative;
+	transition: 0.3s;
+}
+
+.social-card:hover {
+	transform: translateY(-5px);
+}
+
+.social-img {
+    position: relative;
+}
+
+/* Image */
+.social-img img {
+	width: 100%;
+	object-fit: cover;
+}
+
+/* Body */
+.social-body {
+	padding: 20px;
+}
+
+.social-heading {
+	font-size: 18px;
+	font-weight: 700;
+	min-height: 60px;
+	color: #333;
+}
+
+.social-desc {
+	margin-top: 10px;
+	color: #777;
+	font-size: 12px;
+}
+
+/* Meta */
+.social-meta {
+	margin-top: 15px;
+	font-size: 13px;
+	color: #444;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* Date badge */
+.social-date {
+	background: linear-gradient(135deg, #f22625, #fba0a1);
+
+	color: #fff;
+	padding: 7px 15px;
+	position: absolute;
+	right: -4px;
+	bottom: 25px;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+/* SEARCH BOX */
+.social-search-box {
+	margin: 20px 0 5px 0;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.breadcrumb {
+	font-size: 14px;
+	color: #555;
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.breadcrumb a {
+	text-decoration: none;
+	color: #000;
+	font-size: 12px;
+}
+
+.breadcrumb i,
+.meta i {
+	font-size: 12px;
+	opacity: 0.8;
+}
+
+.meta {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	font-size: 12px;
+	color: #666;
+}
+
+.meta-item {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.meta-item.right {
+	margin-left: auto;
+}
+
+.meta strong {
+	color: #000;
+}
+
+.sidebar-social {
+	background: #fff;
+	padding: 20px;
+	border-radius: 12px;
+}
+
+.sidebar-social h3 {
+	font-size: 20px;
+	font-weight: 700;
+	margin-bottom: 15px;
+}
+
+.social-item {
+	display: flex;
+	gap: 15px;
+	margin-bottom: 18px;
+}
+
+.social-item img {
+	width: 70px;
+	height: 70px;
+	object-fit: cover;
+	border-radius: 10px;
+}
+
+.social-info {
+	flex: 1;
+}
+
+.social-info .judul {
+	font-size: 13px;
+	font-weight: 600;
+	color: #000;
+	display: block;
+	line-height: 1.3;
+	text-decoration: none;
+}
+
+.social-info .judul:hover {
+	text-decoration: underline;
+}
+
+.meta2 {
+	margin-top: 4px;
+	font-size: 13px;
+	color: #666;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.judul {
+	display: -webkit-box;
+	/* untuk webkit */
+	-webkit-line-clamp: 2;
+	/* jumlah baris yang diinginkan */
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	/* cadangan */
+	line-height: 1.2em;
+	/* sesuaikan spacing */
+	max-height: calc(1.2em * 2);
+	/* fallback ukuran 2 baris */
+	font-weight: 700;
+	color: #111;
+	text-decoration: none;
+	/* hilangkan garis */
+	display: block;
+	/* anchor perlu block agar max-width/ellipsis bekerja */
+}
+
+.entry-categories.category-fixed {
+	position: absolute;
+	bottom: 10px;
+	/* jarak dari bawah gambar */
+	left: 10px;
+	/* jarak dari kiri gambar */
+	z-index: 10;
+}
+
+.entry-categories.category-fixed a {
+	padding: 5px 12px;
+	background: #fc6600;
+	color: #fff;
+	border-radius: 4px;
+	font-size: 10px;
+	font-weight: bold;
+}

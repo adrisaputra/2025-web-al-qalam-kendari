@@ -4,7 +4,6 @@
 	<div class="article-card" data-animate="fadeInUp" data-delay="{{$i+1}}00">
 		<div class="article-img">
 			<img src="{{ asset('storage/upload/article/'.$v->cover) }}" alt="">
-			<div class="entry-categories category-fixed"><a href="#" style="background: {{ $v->theme_color }}">{{ $v->work_unit?->name }}</a></div>
 		</div>
 
 		<div class="article-body">
